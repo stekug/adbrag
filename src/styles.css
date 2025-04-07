@@ -1,2 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import 'tailwindcss';
+
+@theme {
+  --color-primary-adblue: #006ec7;
+  --color-primary-liteblue: #4da3e6;
+  --color-primary-white: #f8f9fa;
+  --color-primary-grey: #e9ecef;
+  --color-primary-black: #343a40;
+  --color-secondaryGreen: #5dfcb9;
+  --color-secondaryRed: #fa5252;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: radial-gradient(#303b37, #1a1f1d);
+  color: #343a40;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
