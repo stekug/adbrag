@@ -22,7 +22,8 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background: radial-gradient(circle at top left, #ebebeb, #dcdcdc);
+  -webkit-font-smoothing: antialiased;
+  background: radial-gradient(#303b37, #1a1f1d);
   color: #343a40;
   margin: 0;
   padding: 0;
