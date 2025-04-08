@@ -1,10 +1,12 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { BragDocumentService } from '../brag-document.service';
-import { BragDocument } from '../../models/brag-document.model';
+import { type BragDocument } from '../../models/brag-document.model';
+
+import { GoalComponent } from './goal/goal.component';
 
 @Component({
   selector: 'app-goals',
-  imports: [],
+  imports: [GoalComponent],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css',
 })

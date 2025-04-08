@@ -1,12 +1,12 @@
 <h2>Goals for this year</h2>
 <ul>
   @for (goal of goalsThisYear(); track goal.id) {
-  <li>test</li>
+  <app-goal [goal]="goal" />
   }
 </ul>
 <h2>Goals for next year</h2>
 <ul>
   @for (goal of goalsNextYear(); track goal.id) {
-  <li>test</li>
+  <app-goal />
   }
 </ul>
