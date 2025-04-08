@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-import { type Goal } from '../../../models/brag-document.model';
+import { type Goal } from '../../../../models/brag-document.model';
 
 @Component({
   selector: 'app-goal',

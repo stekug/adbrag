@@ -1,30 +1,4 @@
-<h2>Goals for this year</h2>
-
-@if (goalsThisYear().length > 0) {
-<ul>
-  @for (goal of goalsThisYear(); track goal.id) {
-  <app-goal [goal]="goal" />
-  }
-</ul>
-
-} @else {
-<p>
-  There are no goals for this year. You can add goals by pressing the add
-  button.
-</p>
-}
-
-<h2>Goals for next year</h2>
-@if (goalsNextYear().length > 0) {
-<ul>
-  @for (goal of goalsNextYear(); track goal.id) {
-  <app-goal [goal]="goal" />
-  }
-</ul>
-
-} @else {
-<p>
-  There are no goals for next year. You can add goals by pressing the add
-  button.
-</p>
-}
+<section class="p-8">
+  <app-goals-section [goals]="goalsThisYear()" title="Goals for this year" />
+  <app-goals-section [goals]="goalsNextYear()" title="Goals for next year" />
+</section>
