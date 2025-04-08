@@ -13,9 +13,9 @@ export interface Goal {
 
 export interface Project {
   id: string;
-  date: Date;
+  date: string;
   title: string;
-  subTitel: string;
+  subTitle: string;
   description: string;
   techStack: string[];
 }

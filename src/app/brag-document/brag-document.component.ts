@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GoalsComponent } from './goals/goals.component';
+import { BragDocumentService } from './brag-document.service';
 
 @Component({
   selector: 'app-brag-document',
