@@ -8,6 +8,9 @@
   --color-primary-white: #f8f9fa;
   --color-primary-grey: #e9ecef;
   --color-primary-black: #343a40;
+  --color-primary-black-alpha5: rgba(0, 0, 0, 0.5);
+  --color-primary-black-alpha8: rgba(0, 0, 0, 0.8);
+  --color-primary-black-alpha9: rgba(0, 0, 0, 0.9);
   --color-secondaryGreen: #5dfcb9;
   --color-secondaryRed: #fa5252;
 }
