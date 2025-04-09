@@ -2,11 +2,11 @@ import { Component, input } from '@angular/core';
 import { type Goal } from '../../../models/brag-document.model';
 
 import { GoalsContainerComponent } from '../goals-container/goals-container.component';
-import { GoalsHeaderComponent } from '../goals-header/goals-header.component';
+import { SectionHeaderComponent } from '../../shared/section-header/section-header.component';
 
 @Component({
   selector: 'app-goals-section',
-  imports: [GoalsContainerComponent, GoalsHeaderComponent],
+  imports: [GoalsContainerComponent, SectionHeaderComponent],
   templateUrl: './goals-section.component.html',
   styleUrl: './goals-section.component.css',
 })
