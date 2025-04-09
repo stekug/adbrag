@@ -16,4 +16,8 @@ export class GoalsComponent {
 
   goalsThisYear = computed(() => this.brag().goalsThisYear);
   goalsNextYear = computed(() => this.brag().goalsNextYear);
+
+  handleAddGoal(type: 'goalsThisYear' | 'goalsNextYear') {
+    console.log('Adding a Goal: ', type);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { type Goal } from '../../../models/brag-document.model';
 
 import { GoalsContainerComponent } from '../goals-container/goals-container.component';
@@ -13,4 +13,7 @@ import { SectionHeaderComponent } from '../../shared/section-header/section-head
 export class GoalsSectionComponent {
   title = input<string>();
   goals = input.required<Goal[]>();
+  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
+
+  onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
 }

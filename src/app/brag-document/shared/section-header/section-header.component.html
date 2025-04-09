@@ -6,5 +6,5 @@
   >
     {{ title() }}
   </h2>
-  <app-add-btn />
+  <app-add-btn (click)="onAdd.emit(actionType())" />
 </header>

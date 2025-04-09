@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { AddBtnComponent } from '../add-btn/add-btn.component';
 
 @Component({
@@ -9,4 +9,7 @@ import { AddBtnComponent } from '../add-btn/add-btn.component';
 })
 export class SectionHeaderComponent {
   title = input<string>();
+  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
+
+  onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
 }
