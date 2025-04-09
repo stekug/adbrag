@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
 import { BragDocument } from '../../models/brag-document.model';
@@ -17,7 +17,18 @@ export class GoalsComponent {
   goalsThisYear = computed(() => this.brag().goalsThisYear);
   goalsNextYear = computed(() => this.brag().goalsNextYear);
 
-  handleAddGoal(type: 'goalsThisYear' | 'goalsNextYear') {
+  // --> Handle goals adding for this and next year <--
+  handleAdd(type: 'goalsThisYear' | 'goalsNextYear') {
     console.log('Adding a Goal: ', type);
+    switch (type) {
+      case 'goalsThisYear':
+        // update goalsThisYear
+        console.log('adding goal to this year');
+        break;
+      case 'goalsNextYear':
+        // update goalsNextYear
+        console.log('adding goal to next year');
+        break;
+    }
   }
 }

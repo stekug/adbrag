@@ -1,14 +1,14 @@
 <section class="p-8">
   <app-goals-section
-    [goals]="goalsThisYear()"
     title="Goals for this year"
+    [goals]="goalsThisYear()"
     actionType="goalsThisYear"
-    (onAdd)="handleAddGoal($event)"
+    (onAdd)="handleAdd($event)"
   />
   <app-goals-section
-    [goals]="goalsNextYear()"
     title="Goals for next year"
+    [goals]="goalsNextYear()"
     actionType="goalsNextYear"
-    (onAdd)="handleAddGoal($event)"
+    (onAdd)="handleAdd($event)"
   />
 </section>
