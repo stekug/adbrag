@@ -1,5 +1,6 @@
 <div
   class="bg-primary-black-alpha5 backdrop-blur-sm fixed top-0 left-0 w-full h-screen z-10"
+  (click)="onCancel()"
 ></div>
 <dialog
   open
@@ -21,11 +22,14 @@
     </p>
     <div class="flex gap-4 justify-end">
       <button
+        type="button"
+        (click)="onCancel()"
         class="hover:cursor-pointer py-0.5 text-xl text-primary-liteblue hover:text-primary-white"
       >
         cancel
       </button>
       <button
+        type="button"
         class="border hover:cursor-pointer text-xl py-0.5 px-4 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md"
       >
         add goal

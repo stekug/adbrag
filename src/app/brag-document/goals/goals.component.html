@@ -1,5 +1,5 @@
 @if (isAddingGoal) {
-<app-new-goal />
+<app-new-goal (cancel)="onCancelAddGoal()" />
 }
 <section class="p-8">
   <app-goals-section

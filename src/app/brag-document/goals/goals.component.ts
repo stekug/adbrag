@@ -34,4 +34,8 @@ export class GoalsComponent {
         break;
     }
   }
+
+  onCancelAddGoal() {
+    this.isAddingGoal = false;
+  }
 }
