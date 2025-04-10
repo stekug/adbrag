@@ -27,7 +27,6 @@ export class GoalsComponent {
   handleAdd(type: 'goalsThisYear' | 'goalsNextYear') {
     this.activeGoalSection = type;
     this.isAddingGoal = true;
-    console.log('Adding a Goal: ', type);
   }
 
   onCancelAddGoal() {
