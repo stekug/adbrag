@@ -15,7 +15,7 @@ export class GoalsComponent {
 
   brag = signal<BragDocument>(this.bragDocumentService.loadBrag('2025'));
 
-  isAddingGoal = true;
+  isAddingGoal = false;
 
   goalsThisYear = computed(() => this.brag().goalsThisYear);
   goalsNextYear = computed(() => this.brag().goalsNextYear);
@@ -25,10 +25,12 @@ export class GoalsComponent {
     console.log('Adding a Goal: ', type);
     switch (type) {
       case 'goalsThisYear':
+        this.isAddingGoal = true;
         // update goalsThisYear
         console.log('adding goal to this year');
         break;
       case 'goalsNextYear':
+        this.isAddingGoal = true;
         // update goalsNextYear
         console.log('adding goal to next year');
         break;
