@@ -1,0 +1,10 @@
+<header
+  class="p-2 bg-primary-adblue rounded-md drop-shadow-md/60 flex items-center justify-end"
+>
+  <h2
+    class="text-3xl font-bold text-primary-white text-center absolute left-1/2 -translate-x-1/2"
+  >
+    {{ title() }}
+  </h2>
+  <app-add-btn (click)="onAdd.emit(actionType())" />
+</header>

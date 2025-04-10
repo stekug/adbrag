@@ -1,4 +1,21 @@
+@if (isAddingGoal && activeGoalSection) {
+<app-new-goal
+  (cancel)="onCancelAddGoal()"
+  (add)="onAddGoal($event)"
+  [section]="activeGoalSection!"
+/>
+}
 <section class="p-8">
-  <app-goals-section [goals]="goalsThisYear()" title="Goals for this year" />
-  <app-goals-section [goals]="goalsNextYear()" title="Goals for next year" />
+  <app-goals-section
+    title="Goals for this year"
+    [goals]="goalsThisYear()"
+    actionType="goalsThisYear"
+    (onAdd)="handleAdd($event)"
+  />
+  <app-goals-section
+    title="Goals for next year"
+    [goals]="goalsNextYear()"
+    actionType="goalsNextYear"
+    (onAdd)="handleAdd($event)"
+  />
 </section>
