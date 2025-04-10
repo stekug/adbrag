@@ -1,5 +1,9 @@
-@if (isAddingGoal) {
-<app-new-goal (cancel)="onCancelAddGoal()" />
+@if (isAddingGoal && activeGoalSection) {
+<app-new-goal
+  (cancel)="onCancelAddGoal()"
+  (add)="onAddGoal($event)"
+  [section]="activeGoalSection!"
+/>
 }
 <section class="p-8">
   <app-goals-section

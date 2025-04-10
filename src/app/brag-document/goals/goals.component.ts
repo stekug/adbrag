@@ -1,7 +1,7 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
-import { BragDocument } from '../../models/brag-document.model';
+import { BragDocument, Goal } from '../../models/brag-document.model';
 import { NewGoalComponent } from './new-goal/new-goal.component';
 
 @Component({
@@ -13,31 +13,39 @@ import { NewGoalComponent } from './new-goal/new-goal.component';
 export class GoalsComponent {
   private bragDocumentService = inject(BragDocumentService);
 
-  brag = signal<BragDocument>(this.bragDocumentService.loadBrag('2025'));
+  brag: Signal<BragDocument | null> =
+    this.bragDocumentService.getBragForYear('2025');
 
   isAddingGoal = false;
 
-  goalsThisYear = computed(() => this.brag().goalsThisYear);
-  goalsNextYear = computed(() => this.brag().goalsNextYear);
+  activeGoalSection: 'goalsThisYear' | 'goalsNextYear' | null = null;
+
+  goalsThisYear = computed(() => this.brag()?.goalsThisYear ?? []);
+  goalsNextYear = computed(() => this.brag()?.goalsNextYear ?? []);
 
   // --> Handle goals adding for this and next year <--
   handleAdd(type: 'goalsThisYear' | 'goalsNextYear') {
+    this.activeGoalSection = type;
+    this.isAddingGoal = true;
     console.log('Adding a Goal: ', type);
-    switch (type) {
-      case 'goalsThisYear':
-        this.isAddingGoal = true;
-        // update goalsThisYear
-        console.log('adding goal to this year');
-        break;
-      case 'goalsNextYear':
-        this.isAddingGoal = true;
-        // update goalsNextYear
-        console.log('adding goal to next year');
-        break;
-    }
   }
 
   onCancelAddGoal() {
+    this.isAddingGoal = false;
+  }
+
+  onAddGoal(goalData: {
+    text: string;
+    section: 'goalsThisYear' | 'goalsNextYear';
+  }) {
+    const newGoal: Goal = {
+      id: crypto.randomUUID(),
+      text: goalData.text,
+    };
+    const section = goalData.section;
+    // Send newGoal to Service
+    this.bragDocumentService.saveNewGoal('2025', newGoal, section);
+
     this.isAddingGoal = false;
   }
 }

@@ -1,6 +1,13 @@
-import { afterNextRender, Injectable, signal } from '@angular/core';
+import {
+  afterNextRender,
+  computed,
+  Injectable,
+  Signal,
+  signal,
+} from '@angular/core';
 
 import { DUMMY_BRAGS } from '../../data/dummy-data';
+import { BragDocument, Goal } from '../models/brag-document.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +31,41 @@ export class BragDocumentService {
   }
 
   loadBrag(year: string) {
-    const singleBrac = this.brags().filter((brag) => brag.year === year)[0];
-    console.log(singleBrac);
+    const thisBrag = this.brags().filter((brag) => brag.year === year)[0];
+    console.log(thisBrag);
     this.saveBrags();
-    return singleBrac;
+    return thisBrag;
+  }
+
+  getBragForYear(year: string): Signal<BragDocument | null> {
+    return computed(
+      () => this.brags().find((brag) => brag.year === year) ?? null
+    );
+  }
+
+  saveNewGoal(
+    year: string,
+    newGoal: Goal,
+    section: 'goalsThisYear' | 'goalsNextYear'
+  ) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        switch (section) {
+          case 'goalsThisYear':
+            return {
+              ...brag,
+              goalsThisYear: [...brag.goalsThisYear, newGoal],
+            };
+          case 'goalsNextYear':
+            return {
+              ...brag,
+              goalsNextYear: [...brag.goalsNextYear, newGoal],
+            };
+        }
+      })
+    );
+    this.saveBrags();
   }
 }

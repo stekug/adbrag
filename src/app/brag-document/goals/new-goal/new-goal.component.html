@@ -8,8 +8,8 @@
     class="w-[66%] max-w-md p-8 rounded-md bg-primary-adblue overflow-hidden drop-shadow-md/30 mx-auto"
   >
     <h2 class="text-3xl font-bold text-primary-white">Add goal</h2>
-    <form>
-      <p>
+    <form (ngSubmit)="onSubmit()">
+      <div>
         <label for="goal" class="block font-bold text-primary-white text-sm"
           >Text</label
         >
@@ -19,8 +19,9 @@
           type="textarea"
           rows="5"
           name="goal"
+          [(ngModel)]="enteredGoal"
         ></textarea>
-      </p>
+      </div>
       <div class="flex gap-4 justify-end">
         <button
           type="button"
@@ -30,7 +31,7 @@
           cancel
         </button>
         <button
-          type="button"
+          type="submit"
           class="border hover:cursor-pointer text-xl py-0.5 px-4 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md"
         >
           add goal
