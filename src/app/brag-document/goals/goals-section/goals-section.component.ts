@@ -1,8 +1,8 @@
 import { Component, input, output } from '@angular/core';
-import { type Goal } from '../../../models/brag-document.model';
+import { GoalsSection, type Goal } from '../../../models/brag-document.model';
 
 import { GoalsContainerComponent } from '../goals-container/goals-container.component';
-import { SectionHeaderComponent } from '../../shared/section-header/section-header.component';
+import { SectionHeaderComponent } from '../../../shared/section-header/section-header.component';
 
 @Component({
   selector: 'app-goals-section',
@@ -13,7 +13,9 @@ import { SectionHeaderComponent } from '../../shared/section-header/section-head
 export class GoalsSectionComponent {
   title = input<string>();
   goals = input.required<Goal[]>();
-  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  goalsSection = input.required<GoalsSection>();
 
-  onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
+  onAdd = output<GoalsSection>();
+
+  requestDelete = output<string>();
 }

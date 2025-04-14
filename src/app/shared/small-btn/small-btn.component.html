@@ -1,0 +1,11 @@
+<button
+  type="button"
+  [ngClass]="{
+    'bg-secondaryRed hover:bg-red-300': variant() === 'delete',
+    'bg-primary-liteblue hover:bg-blue-300': variant() === 'edit',
+    'bg-primary-grey': variant() === 'default',
+  }"
+  class="px-3 text-sm border rounded-sm cursor-pointer"
+>
+  {{ variant() }}
+</button>

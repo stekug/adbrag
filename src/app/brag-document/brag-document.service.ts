@@ -7,7 +7,11 @@ import {
 } from '@angular/core';
 
 import { DUMMY_BRAGS } from '../../data/dummy-data';
-import { BragDocument, Goal } from '../models/brag-document.model';
+import {
+  BragDocument,
+  Goal,
+  GoalsSection,
+} from '../models/brag-document.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,29 +34,18 @@ export class BragDocumentService {
     localStorage.setItem('brags', JSON.stringify(this.brags()));
   }
 
-  loadBrag(year: string) {
-    const thisBrag = this.brags().filter((brag) => brag.year === year)[0];
-    console.log(thisBrag);
-    this.saveBrags();
-    return thisBrag;
-  }
-
   getBragForYear(year: string): Signal<BragDocument | null> {
     return computed(
       () => this.brags().find((brag) => brag.year === year) ?? null
     );
   }
 
-  saveNewGoal(
-    year: string,
-    newGoal: Goal,
-    section: 'goalsThisYear' | 'goalsNextYear'
-  ) {
+  saveNewGoal(year: string, newGoal: Goal, goalsSection: GoalsSection) {
     this.brags.update((allBrags) =>
       allBrags.map((brag) => {
         if (brag.year !== year) return brag;
 
-        switch (section) {
+        switch (goalsSection) {
           case 'goalsThisYear':
             return {
               ...brag,
@@ -62,6 +55,32 @@ export class BragDocumentService {
             return {
               ...brag,
               goalsNextYear: [...brag.goalsNextYear, newGoal],
+            };
+        }
+      })
+    );
+    this.saveBrags();
+  }
+
+  deleteGoal(year: string, id: string, goalsSection: GoalsSection) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        switch (goalsSection) {
+          case 'goalsThisYear':
+            return {
+              ...brag,
+              goalsThisYear: brag.goalsThisYear.filter(
+                (goal) => goal.id !== id
+              ),
+            };
+          case 'goalsNextYear':
+            return {
+              ...brag,
+              goalsNextYear: brag.goalsNextYear.filter(
+                (goal) => goal.id !== id
+              ),
             };
         }
       })

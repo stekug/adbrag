@@ -1,12 +1,16 @@
 @if (goals().length > 0) {
 <ul class="grid grid-cols-3 gap-4 mt-4">
   @for (goal of goals(); track goal.id) {
-  <app-goal [goal]="goal" />
+  <app-goal
+    [goal]="goal"
+    [goalsSection]="goalsSection()"
+    (requestDelete)="requestDelete.emit($event)"
+  />
   }
 </ul>
 
 } @else {
-<p>
+<p class="text-center mt-4 font-bold text-lg">
   There are no goals for this year. You can add goals by pressing the add
   button.
 </p>

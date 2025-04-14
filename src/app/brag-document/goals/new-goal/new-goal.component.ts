@@ -1,6 +1,7 @@
 import { Component, input, output, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { GoalsSection } from '../../../models/brag-document.model';
 
 @Component({
   selector: 'app-new-goal',
@@ -9,9 +10,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-goal.component.css',
 })
 export class NewGoalComponent {
-  section = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  goalsSection = input.required<GoalsSection>();
   cancel = output<void>();
-  add = output<{ text: string; section: 'goalsThisYear' | 'goalsNextYear' }>();
+  add = output<{
+    text: string;
+    goalsSection: GoalsSection;
+  }>();
   enteredGoal = signal('');
 
   onCancel() {
@@ -21,7 +25,7 @@ export class NewGoalComponent {
   onSubmit() {
     this.add.emit({
       text: this.enteredGoal(),
-      section: this.section(),
+      goalsSection: this.goalsSection(),
     });
   }
 }

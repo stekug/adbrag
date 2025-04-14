@@ -1,13 +1,23 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
-import { type Goal } from '../../../../models/brag-document.model';
+import {
+  type GoalsSection,
+  type Goal,
+} from '../../../../models/brag-document.model';
+import { SmallBtnComponent } from '../../../../shared/small-btn/small-btn.component';
 
 @Component({
   selector: 'app-goal',
-  imports: [],
+  imports: [SmallBtnComponent],
   templateUrl: './goal.component.html',
   styleUrl: './goal.component.css',
 })
 export class GoalComponent {
-  goal = input<Goal>();
+  goal = input.required<Goal>();
+  goalsSection = input.required<GoalsSection>();
+  requestDelete = output<string>();
+
+  onEdit() {
+    console.log('edit click');
+  }
 }

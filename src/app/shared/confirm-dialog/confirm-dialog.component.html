@@ -7,37 +7,24 @@
     open
     class="w-[66%] max-w-md p-8 rounded-md bg-primary-adblue overflow-hidden drop-shadow-md/30 mx-auto"
   >
-    <h2 class="text-3xl font-bold text-primary-white">Add goal</h2>
-    <form (ngSubmit)="onSubmit()">
-      <div>
-        <label for="goal" class="block font-bold text-primary-white text-sm"
-          >Text</label
-        >
-        <textarea
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue"
-          id="goal"
-          type="textarea"
-          rows="5"
-          name="goal"
-          [(ngModel)]="enteredGoal"
-          maxlength="180"
-        ></textarea>
-      </div>
+    <div>
+      <p class="text-primary-white text-lg font-bold">{{ message() }}</p>
       <div class="flex gap-4 justify-end">
         <button
           type="button"
           (click)="onCancel()"
           class="hover:cursor-pointer py-0.5 text-xl text-primary-liteblue hover:text-primary-white"
         >
-          cancel
+          {{ cancelText() }}
         </button>
         <button
-          type="submit"
+          type="button"
+          (click)="onSubmit()"
           class="border hover:cursor-pointer text-xl py-0.5 px-4 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md"
         >
-          add goal
+          {{ confirmText() }}
         </button>
       </div>
-    </form>
+    </div>
   </dialog>
 </div>

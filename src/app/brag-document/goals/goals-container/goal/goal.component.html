@@ -1,3 +1,14 @@
-<li class="border rounded-md min-h-32 bg-primary-grey p-4 drop-shadow-md/30">
-  <p class="text-primary-black text-center">{{ goal()?.text }}</p>
+<li
+  class="border rounded-md min-h-32 bg-primary-grey p-2 drop-shadow-md/30 flex flex-col justify-between"
+>
+  <p class="text-primary-black text-center break-all">
+    {{ goal().text }}
+  </p>
+  <div class="mt-4 flex gap-2 justify-end">
+    <app-small-btn [variant]="'edit'" (click)="onEdit()" />
+    <app-small-btn
+      [variant]="'delete'"
+      (click)="requestDelete.emit(goal().id)"
+    />
+  </div>
 </li>
