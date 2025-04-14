@@ -64,5 +64,6 @@ export class BragDocumentService {
 
   deleteGoal(year: string, id: string) {
     console.log(id);
+    console.log(year);
   }
 }

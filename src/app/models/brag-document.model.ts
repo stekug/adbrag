@@ -19,3 +19,5 @@ export interface Project {
   description: string;
   techStack: string[];
 }
+
+export type GoalsSection = 'goalsThisYear' | 'goalsNextYear';

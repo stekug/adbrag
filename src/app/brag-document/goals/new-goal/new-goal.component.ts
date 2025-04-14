@@ -1,6 +1,7 @@
 import { Component, input, output, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
+import { GoalsSection } from '../../../models/brag-document.model';
 
 @Component({
   selector: 'app-new-goal',
@@ -9,11 +10,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-goal.component.css',
 })
 export class NewGoalComponent {
-  goalsSection = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  goalsSection = input.required<GoalsSection>();
   cancel = output<void>();
   add = output<{
     text: string;
-    goalsSection: 'goalsThisYear' | 'goalsNextYear';
+    goalsSection: GoalsSection;
   }>();
   enteredGoal = signal('');
 

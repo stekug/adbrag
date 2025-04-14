@@ -1,7 +1,11 @@
 import { Component, computed, inject, Signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
-import { BragDocument, Goal } from '../../models/brag-document.model';
+import {
+  BragDocument,
+  Goal,
+  GoalsSection,
+} from '../../models/brag-document.model';
 import { NewGoalComponent } from './new-goal/new-goal.component';
 
 @Component({
@@ -18,13 +22,13 @@ export class GoalsComponent {
 
   isAddingGoal = false;
 
-  goalsSection: 'goalsThisYear' | 'goalsNextYear' | null = null;
+  goalsSection: GoalsSection | null = null;
 
   goalsThisYear = computed(() => this.brag()?.goalsThisYear ?? []);
   goalsNextYear = computed(() => this.brag()?.goalsNextYear ?? []);
 
   // --> Handle goals adding for this and next year <--
-  handleAdd(type: 'goalsThisYear' | 'goalsNextYear') {
+  handleAdd(type: GoalsSection) {
     this.goalsSection = type;
     this.isAddingGoal = true;
   }
@@ -33,10 +37,7 @@ export class GoalsComponent {
     this.isAddingGoal = false;
   }
 
-  onAddGoal(goalData: {
-    text: string;
-    goalsSection: 'goalsThisYear' | 'goalsNextYear';
-  }) {
+  onAddGoal(goalData: { text: string; goalsSection: GoalsSection }) {
     const newGoal: Goal = {
       id: crypto.randomUUID(),
       text: goalData.text,
