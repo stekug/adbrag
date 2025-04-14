@@ -1,4 +1,4 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { GoalComponent } from './goal/goal.component';
 
 import { GoalsSection, type Goal } from '../../../models/brag-document.model';
@@ -12,4 +12,5 @@ import { GoalsSection, type Goal } from '../../../models/brag-document.model';
 export class GoalsContainerComponent {
   goals = input.required<Goal[]>();
   goalsSection = input.required<GoalsSection>();
+  requestDelete = output<string>();
 }

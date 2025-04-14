@@ -16,4 +16,6 @@ export class GoalsSectionComponent {
   goalsSection = input.required<GoalsSection>();
 
   onAdd = output<GoalsSection>();
+
+  requestDelete = output<string>();
 }

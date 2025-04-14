@@ -4,5 +4,9 @@
     [actionType]="goalsSection()"
     (onAdd)="onAdd.emit($event)"
   />
-  <app-goals-container [goals]="goals()" [goalsSection]="goalsSection()" />
+  <app-goals-container
+    [goals]="goals()"
+    [goalsSection]="goalsSection()"
+    (requestDelete)="requestDelete.emit($event)"
+  />
 </div>
