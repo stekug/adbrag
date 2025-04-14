@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 
@@ -8,7 +8,18 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './confirm-dialog.component.html',
 })
 export class ConfirmDialogComponent {
-  onCancel() {}
+  message = input.required<string>();
+  confirmText = input.required<string>();
+  cancelText = input.required<string>();
 
-  onSubmit() {}
+  cancel = output<void>();
+  confirm = output<void>();
+
+  onCancel() {
+    this.cancel.emit();
+  }
+
+  onSubmit() {
+    this.confirm.emit();
+  }
 }

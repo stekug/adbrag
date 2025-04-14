@@ -1,3 +1,13 @@
+@if(isConfirmDelete){
+<app-confirm-dialog
+  [message]="'Are you sure you want to delete this goal?'"
+  [confirmText]="'Yes, delete'"
+  [cancelText]="'Cancel'"
+  (confirm)="onDeleteConfirm()"
+  (cancel)="onCancelDialog()"
+/>
+}
+
 <li
   class="border rounded-md min-h-32 bg-primary-grey p-2 drop-shadow-md/30 flex flex-col justify-between"
 >
@@ -5,10 +15,7 @@
     {{ goal().text }}
   </p>
   <div class="mt-4 flex gap-2 justify-end">
-    <app-small-btn [variant]="'edit'" (click)="onClick('edit', goal().id)" />
-    <app-small-btn
-      [variant]="'delete'"
-      (click)="onClick('delete', goal().id)"
-    />
+    <app-small-btn [variant]="'edit'" (click)="onEdit()" />
+    <app-small-btn [variant]="'delete'" (click)="onDelete(goal().id)" />
   </div>
 </li>
