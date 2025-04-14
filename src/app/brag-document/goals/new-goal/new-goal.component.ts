@@ -9,9 +9,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-goal.component.css',
 })
 export class NewGoalComponent {
-  section = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  goalsSection = input.required<'goalsThisYear' | 'goalsNextYear'>();
   cancel = output<void>();
-  add = output<{ text: string; section: 'goalsThisYear' | 'goalsNextYear' }>();
+  add = output<{
+    text: string;
+    goalsSection: 'goalsThisYear' | 'goalsNextYear';
+  }>();
   enteredGoal = signal('');
 
   onCancel() {
@@ -21,7 +24,7 @@ export class NewGoalComponent {
   onSubmit() {
     this.add.emit({
       text: this.enteredGoal(),
-      section: this.section(),
+      goalsSection: this.goalsSection(),
     });
   }
 }

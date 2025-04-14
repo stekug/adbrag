@@ -13,7 +13,7 @@ import { SectionHeaderComponent } from '../../shared/section-header/section-head
 export class GoalsSectionComponent {
   title = input<string>();
   goals = input.required<Goal[]>();
-  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  goalsSection = input.required<'goalsThisYear' | 'goalsNextYear'>();
 
   onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
 }

@@ -18,14 +18,14 @@ export class GoalsComponent {
 
   isAddingGoal = false;
 
-  activeGoalSection: 'goalsThisYear' | 'goalsNextYear' | null = null;
+  goalsSection: 'goalsThisYear' | 'goalsNextYear' | null = null;
 
   goalsThisYear = computed(() => this.brag()?.goalsThisYear ?? []);
   goalsNextYear = computed(() => this.brag()?.goalsNextYear ?? []);
 
   // --> Handle goals adding for this and next year <--
   handleAdd(type: 'goalsThisYear' | 'goalsNextYear') {
-    this.activeGoalSection = type;
+    this.goalsSection = type;
     this.isAddingGoal = true;
   }
 
@@ -35,15 +35,15 @@ export class GoalsComponent {
 
   onAddGoal(goalData: {
     text: string;
-    section: 'goalsThisYear' | 'goalsNextYear';
+    goalsSection: 'goalsThisYear' | 'goalsNextYear';
   }) {
     const newGoal: Goal = {
       id: crypto.randomUUID(),
       text: goalData.text,
     };
-    const section = goalData.section;
+    const goalsSection = goalData.goalsSection;
     // Send newGoal to Service
-    this.bragDocumentService.saveNewGoal('2025', newGoal, section);
+    this.bragDocumentService.saveNewGoal('2025', newGoal, goalsSection);
 
     this.isAddingGoal = false;
   }

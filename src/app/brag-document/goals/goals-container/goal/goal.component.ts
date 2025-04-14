@@ -1,13 +1,27 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { BragDocumentService } from '../../../brag-document.service';
 
 import { type Goal } from '../../../../models/brag-document.model';
+import { SmallBtnComponent } from '../../../shared/small-btn/small-btn.component';
 
 @Component({
   selector: 'app-goal',
-  imports: [],
+  imports: [SmallBtnComponent],
   templateUrl: './goal.component.html',
   styleUrl: './goal.component.css',
 })
 export class GoalComponent {
-  goal = input<Goal>();
+  private bragDocumentService = inject(BragDocumentService);
+  goal = input.required<Goal>();
+  // goalSection = input.required<'goalsThisYear' | 'goalsNextYear'>();
+
+  onClick(action: 'edit' | 'delete', id: string) {
+    switch (action) {
+      case 'edit':
+        console.log('edit', id);
+        return;
+      case 'delete':
+        this.bragDocumentService.deleteGoal('2025', id);
+    }
+  }
 }
