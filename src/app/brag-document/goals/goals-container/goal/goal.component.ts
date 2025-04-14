@@ -5,7 +5,7 @@ import {
   GoalsSection,
   type Goal,
 } from '../../../../models/brag-document.model';
-import { SmallBtnComponent } from '../../../shared/small-btn/small-btn.component';
+import { SmallBtnComponent } from '../../../../shared/small-btn/small-btn.component';
 
 @Component({
   selector: 'app-goal',
