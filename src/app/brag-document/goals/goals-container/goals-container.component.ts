@@ -1,7 +1,7 @@
 import { Component, input, OnInit } from '@angular/core';
 import { GoalComponent } from './goal/goal.component';
 
-import { type Goal } from '../../../models/brag-document.model';
+import { GoalsSection, type Goal } from '../../../models/brag-document.model';
 
 @Component({
   selector: 'app-goals-container',
@@ -11,4 +11,5 @@ import { type Goal } from '../../../models/brag-document.model';
 })
 export class GoalsContainerComponent {
   goals = input.required<Goal[]>();
+  goalsSection = input.required<GoalsSection>();
 }

@@ -7,7 +7,11 @@ import {
 } from '@angular/core';
 
 import { DUMMY_BRAGS } from '../../data/dummy-data';
-import { BragDocument, Goal } from '../models/brag-document.model';
+import {
+  BragDocument,
+  Goal,
+  GoalsSection,
+} from '../models/brag-document.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,11 +40,7 @@ export class BragDocumentService {
     );
   }
 
-  saveNewGoal(
-    year: string,
-    newGoal: Goal,
-    goalsSection: 'goalsThisYear' | 'goalsNextYear'
-  ) {
+  saveNewGoal(year: string, newGoal: Goal, goalsSection: GoalsSection) {
     this.brags.update((allBrags) =>
       allBrags.map((brag) => {
         if (brag.year !== year) return brag;
@@ -62,8 +62,29 @@ export class BragDocumentService {
     this.saveBrags();
   }
 
-  deleteGoal(year: string, id: string) {
-    console.log(id);
-    console.log(year);
+  deleteGoal(year: string, id: string, goalsSection: GoalsSection) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        switch (goalsSection) {
+          case 'goalsThisYear':
+            return {
+              ...brag,
+              goalsThisYear: brag.goalsThisYear.filter(
+                (goal) => goal.id !== id
+              ),
+            };
+          case 'goalsNextYear':
+            return {
+              ...brag,
+              goalsNextYear: brag.goalsNextYear.filter(
+                (goal) => goal.id !== id
+              ),
+            };
+        }
+      })
+    );
+    this.saveBrags();
   }
 }

@@ -4,5 +4,5 @@
     [actionType]="goalsSection()"
     (onAdd)="onAdd.emit($event)"
   />
-  <app-goals-container [goals]="goals()" />
+  <app-goals-container [goals]="goals()" [goalsSection]="goalsSection()" />
 </div>

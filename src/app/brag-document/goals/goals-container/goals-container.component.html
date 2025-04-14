@@ -1,7 +1,7 @@
 @if (goals().length > 0) {
 <ul class="grid grid-cols-3 gap-4 mt-4">
   @for (goal of goals(); track goal.id) {
-  <app-goal [goal]="goal" />
+  <app-goal [goal]="goal" [goalsSection]="goalsSection()" />
   }
 </ul>
 
