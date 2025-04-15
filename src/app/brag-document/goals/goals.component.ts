@@ -117,7 +117,7 @@ export class GoalsComponent {
       goalData.goalsSection
     );
     this.isEditingGoal = false;
-    this.pendingDeleteId = '';
+    this.pendingEditId = '';
   }
 
   onCancelEdit() {

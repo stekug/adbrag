@@ -12,7 +12,7 @@ export class GoalFormComponent {
   goalsSection = input.required<GoalsSection>();
   title = input.required<string>();
   description = input.required<string>();
-  placeholer = input<string>('');
+  placeholder = input<string>('');
   submitText = input.required<string>();
   cancelText = input.required<string>();
   initialText = input<string>('');
