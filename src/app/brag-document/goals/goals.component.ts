@@ -1,11 +1,7 @@
-import { Component, computed, inject, signal, Signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
-import {
-  BragDocument,
-  Goal,
-  GoalsSection,
-} from '../../models/brag-document.model';
+import { Goal, GoalsSection } from '../../models/brag-document.model';
 import { GoalFormComponent } from './goal-form/goal-form.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
@@ -18,8 +14,14 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
 export class GoalsComponent {
   private bragDocumentService = inject(BragDocumentService);
 
-  brag: Signal<BragDocument | null> =
-    this.bragDocumentService.getBragForYear('2025');
+  selectedYear = input.required<string>();
+
+  brag = computed(() =>
+    this.bragDocumentService.getBragForYear(this.selectedYear())()
+  );
+
+  // brag: Signal<BragDocument | null> =
+  //   this.bragDocumentService.getBragForYear('2025');
 
   isAddingGoal = false;
 
