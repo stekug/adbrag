@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
 import {
@@ -6,12 +6,12 @@ import {
   Goal,
   GoalsSection,
 } from '../../models/brag-document.model';
-import { NewGoalComponent } from './new-goal/new-goal.component';
+import { GoalFormComponent } from './goal-form/goal-form.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-goals',
-  imports: [GoalsSectionComponent, NewGoalComponent, ConfirmDialogComponent],
+  imports: [GoalsSectionComponent, GoalFormComponent, ConfirmDialogComponent],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css',
 })

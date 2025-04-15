@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { GoalsSection } from '../../../models/brag-document.model';
 
 @Component({
-  selector: 'app-new-goal',
+  selector: 'app-goal-form',
   imports: [FormsModule],
-  templateUrl: './new-goal.component.html',
-  styleUrl: './new-goal.component.css',
+  templateUrl: './goal-form.component.html',
 })
-export class NewGoalComponent {
+export class GoalFormComponent {
   goalsSection = input.required<GoalsSection>();
   cancel = output<void>();
   add = output<{
