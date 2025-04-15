@@ -104,7 +104,13 @@ export class GoalsComponent {
     this.isEditingGoal = true;
 
     const goal = this.bragDocumentService.getGoal('2025', id, goalsSection);
-    if (!goal) return;
+    if (!goal) {
+      console.error(`Goal with ID ${id} not found in the specified section.`);
+      alert(
+        'The goal you are trying to edit could not be found. Please try again.'
+      );
+      return;
+    }
 
     this.goalText.set(goal.text);
   }
