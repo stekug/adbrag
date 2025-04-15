@@ -26,13 +26,15 @@ export class GoalsComponent {
   isConfirmDelete = false;
   pendingDeleteId: string = '';
 
+  isEditingGoal = false;
+
   goalsSection: GoalsSection | null = null;
 
   goalsThisYear = computed(() => this.brag()?.goalsThisYear ?? []);
   goalsNextYear = computed(() => this.brag()?.goalsNextYear ?? []);
 
   //
-  // --> Handle add goal
+  // --> Handle ADD goal
   //
   handleAdd(type: GoalsSection) {
     this.goalsSection = type;
@@ -55,11 +57,11 @@ export class GoalsComponent {
     this.isAddingGoal = false;
   }
   //
-  // <-- End add goal
+  // <-- End ADD goal
   //
 
   //
-  // --> Handle delete goal
+  // --> Handle DELETE goal
   //
 
   handleDeleteRequest(id: string, goalsSection: GoalsSection) {
@@ -87,6 +89,19 @@ export class GoalsComponent {
   }
 
   //
-  // <-- End delete goal
+  // <-- End DELETE goal
+  //
+
+  //
+  // --> Handle EDIT goal
+  //
+
+  handleEditRequest(id: string, goalsSection: GoalsSection) {
+    console.log(id, goalsSection);
+    this.isEditingGoal = true;
+  }
+
+  //
+  // <-- End EDIT goal
   //
 }

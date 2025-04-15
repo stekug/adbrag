@@ -13,6 +13,9 @@
   (cancel)="onCancelDialog()"
 />
 }
+<!-- @if (isEditingGoal) {
+  <app-new-goal />
+} -->
 
 <section class="p-8">
   <app-goals-section
@@ -21,6 +24,7 @@
     goalsSection="goalsThisYear"
     (onAdd)="handleAdd($event)"
     (requestDelete)="handleDeleteRequest($event, 'goalsThisYear')"
+    (requestEdit)="handleEditRequest($event, 'goalsThisYear')"
   />
   <app-goals-section
     title="Goals for next year"
@@ -28,5 +32,6 @@
     goalsSection="goalsNextYear"
     (onAdd)="handleAdd($event)"
     (requestDelete)="handleDeleteRequest($event, 'goalsNextYear')"
+    (requestEdit)="handleEditRequest($event, 'goalsNextYear')"
   />
 </section>
