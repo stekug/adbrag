@@ -8,8 +8,10 @@
     class="w-[66%] max-w-md p-8 rounded-md bg-primary-adblue overflow-hidden drop-shadow-md/30 mx-auto"
   >
     <div>
-      <p class="text-primary-white text-lg font-bold">{{ message() }}</p>
-      <div class="flex gap-4 justify-end">
+      <p class="text-primary-white text-lg font-bold text-center">
+        {{ message() }}
+      </p>
+      <div class="flex gap-4 justify-center mt-10">
         <button
           type="button"
           (click)="onCancel()"
