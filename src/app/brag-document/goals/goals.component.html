@@ -1,5 +1,10 @@
 @if (isAddingGoal && goalsSection) {
 <app-goal-form
+  [title]="'Add new goal'"
+  [description]="'Enter goal description:'"
+  [placeholer]="'I want to be a the best angular developer of the world!'"
+  [submitText]="'Add goal'"
+  [cancelText]="'Cancel'"
   (cancel)="onCancelAddGoal()"
   (add)="onAddGoal($event)"
   [goalsSection]="goalsSection!"

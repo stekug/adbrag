@@ -10,6 +10,12 @@ import { GoalsSection } from '../../../models/brag-document.model';
 })
 export class GoalFormComponent {
   goalsSection = input.required<GoalsSection>();
+  title = input.required<string>();
+  description = input.required<string>();
+  placeholer = input<string>('');
+  submitText = input.required<string>();
+  cancelText = input.required<string>();
+
   cancel = output<void>();
   add = output<{
     text: string;
