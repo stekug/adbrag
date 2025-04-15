@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { GoalsSection } from '../../../models/brag-document.model';
@@ -15,20 +15,31 @@ export class GoalFormComponent {
   placeholer = input<string>('');
   submitText = input.required<string>();
   cancelText = input.required<string>();
+  initialText = input<string>('');
 
   cancel = output<void>();
-  add = output<{
+  submitForm = output<{
     text: string;
     goalsSection: GoalsSection;
   }>();
-  enteredGoal = signal('');
+
+  enteredGoal = signal<string>('');
+
+  constructor() {
+    effect(() => {
+      const text = this.initialText();
+      if (text) {
+        this.enteredGoal.set(text);
+      }
+    });
+  }
 
   onCancel() {
     this.cancel.emit();
   }
 
   onSubmit() {
-    this.add.emit({
+    this.submitForm.emit({
       text: this.enteredGoal(),
       goalsSection: this.goalsSection(),
     });

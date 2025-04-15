@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
 import {
@@ -23,10 +23,12 @@ export class GoalsComponent {
 
   isAddingGoal = false;
 
+  isEditingGoal = false;
+  pendingEditId: string = '';
+  goalText = signal('');
+
   isConfirmDelete = false;
   pendingDeleteId: string = '';
-
-  isEditingGoal = false;
 
   goalsSection: GoalsSection | null = null;
 
@@ -36,8 +38,8 @@ export class GoalsComponent {
   //
   // --> Handle ADD goal
   //
-  handleAdd(type: GoalsSection) {
-    this.goalsSection = type;
+  handleAdd(goalsSection: GoalsSection) {
+    this.goalsSection = goalsSection;
     this.isAddingGoal = true;
   }
 
@@ -97,8 +99,29 @@ export class GoalsComponent {
   //
 
   handleEditRequest(id: string, goalsSection: GoalsSection) {
-    console.log(id, goalsSection);
+    this.goalsSection = goalsSection;
+    this.pendingEditId = id;
     this.isEditingGoal = true;
+
+    const goal = this.bragDocumentService.getGoal('2025', id, goalsSection);
+    if (!goal) return;
+
+    this.goalText.set(goal.text);
+  }
+
+  onEdit(goalData: { text: string; goalsSection: GoalsSection }) {
+    const editedGoal = { text: goalData.text, id: this.pendingEditId };
+    this.bragDocumentService.saveEditedGoal(
+      '2025',
+      editedGoal,
+      goalData.goalsSection
+    );
+    this.isEditingGoal = false;
+    this.pendingDeleteId = '';
+  }
+
+  onCancelEdit() {
+    this.isEditingGoal = false;
   }
 
   //
