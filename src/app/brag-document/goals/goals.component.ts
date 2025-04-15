@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, Signal } from '@angular/core';
+import { Component, computed, inject, signal, Signal } from '@angular/core';
 import { GoalsSectionComponent } from './goals-section/goals-section.component';
 import { BragDocumentService } from '../brag-document.service';
 import {
@@ -6,12 +6,12 @@ import {
   Goal,
   GoalsSection,
 } from '../../models/brag-document.model';
-import { NewGoalComponent } from './new-goal/new-goal.component';
+import { GoalFormComponent } from './goal-form/goal-form.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-goals',
-  imports: [GoalsSectionComponent, NewGoalComponent, ConfirmDialogComponent],
+  imports: [GoalsSectionComponent, GoalFormComponent, ConfirmDialogComponent],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css',
 })
@@ -23,6 +23,10 @@ export class GoalsComponent {
 
   isAddingGoal = false;
 
+  isEditingGoal = false;
+  pendingEditId: string = '';
+  goalText = signal('');
+
   isConfirmDelete = false;
   pendingDeleteId: string = '';
 
@@ -32,10 +36,10 @@ export class GoalsComponent {
   goalsNextYear = computed(() => this.brag()?.goalsNextYear ?? []);
 
   //
-  // --> Handle add goal
+  // --> Handle ADD goal
   //
-  handleAdd(type: GoalsSection) {
-    this.goalsSection = type;
+  handleAdd(goalsSection: GoalsSection) {
+    this.goalsSection = goalsSection;
     this.isAddingGoal = true;
   }
 
@@ -55,11 +59,11 @@ export class GoalsComponent {
     this.isAddingGoal = false;
   }
   //
-  // <-- End add goal
+  // <-- End ADD goal
   //
 
   //
-  // --> Handle delete goal
+  // --> Handle DELETE goal
   //
 
   handleDeleteRequest(id: string, goalsSection: GoalsSection) {
@@ -87,6 +91,46 @@ export class GoalsComponent {
   }
 
   //
-  // <-- End delete goal
+  // <-- End DELETE goal
+  //
+
+  //
+  // --> Handle EDIT goal
+  //
+
+  handleEditRequest(id: string, goalsSection: GoalsSection) {
+    this.goalsSection = goalsSection;
+    this.pendingEditId = id;
+    this.isEditingGoal = true;
+
+    const goal = this.bragDocumentService.getGoal('2025', id, goalsSection);
+    if (!goal) {
+      console.error(`Goal with ID ${id} not found in the specified section.`);
+      alert(
+        'The goal you are trying to edit could not be found. Please try again.'
+      );
+      return;
+    }
+
+    this.goalText.set(goal.text);
+  }
+
+  onEdit(goalData: { text: string; goalsSection: GoalsSection }) {
+    const editedGoal = { text: goalData.text, id: this.pendingEditId };
+    this.bragDocumentService.saveEditedGoal(
+      '2025',
+      editedGoal,
+      goalData.goalsSection
+    );
+    this.isEditingGoal = false;
+    this.pendingEditId = '';
+  }
+
+  onCancelEdit() {
+    this.isEditingGoal = false;
+  }
+
+  //
+  // <-- End EDIT goal
   //
 }

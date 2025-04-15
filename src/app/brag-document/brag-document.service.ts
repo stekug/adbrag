@@ -56,6 +56,8 @@ export class BragDocumentService {
               ...brag,
               goalsNextYear: [...brag.goalsNextYear, newGoal],
             };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
         }
       })
     );
@@ -82,6 +84,55 @@ export class BragDocumentService {
                 (goal) => goal.id !== id
               ),
             };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
+        }
+      })
+    );
+    this.saveBrags();
+  }
+
+  getGoal(year: string, id: string, goalsSection: GoalsSection) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return;
+
+    if (goalsSection === 'goalsThisYear') {
+      const goal = brag.goalsThisYear.find((g) => g.id === id);
+      return goal;
+    } else if (goalsSection === 'goalsNextYear') {
+      const goal = brag.goalsNextYear.find((g) => g.id === id);
+      return goal;
+    }
+    return undefined;
+  }
+
+  saveEditedGoal(year: string, editedGoal: Goal, goalsSection: GoalsSection) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        switch (goalsSection) {
+          case 'goalsThisYear':
+            const newGoalsThisYear = brag.goalsThisYear.map((goal) => {
+              if (goal.id !== editedGoal.id) return goal;
+              return editedGoal;
+            });
+            return {
+              ...brag,
+              goalsThisYear: newGoalsThisYear,
+            };
+          case 'goalsNextYear':
+            const newGoalsNextYear = brag.goalsNextYear.map((goal) => {
+              if (goal.id !== editedGoal.id) return goal;
+              return editedGoal;
+            });
+            return {
+              ...brag,
+              goalsNextYear: newGoalsNextYear,
+            };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
         }
       })
     );

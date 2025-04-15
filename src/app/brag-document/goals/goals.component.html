@@ -1,10 +1,25 @@
 @if (isAddingGoal && goalsSection) {
-<app-new-goal
+<app-goal-form
+  [title]="'Add new goal'"
+  [description]="'Enter goal description:'"
+  [placeholder]="'I want to be a the best angular developer of the world!'"
+  [submitText]="'Add goal'"
+  [cancelText]="'Cancel'"
   (cancel)="onCancelAddGoal()"
-  (add)="onAddGoal($event)"
+  (submitForm)="onAddGoal($event)"
   [goalsSection]="goalsSection!"
 />
-} @if(isConfirmDelete){
+} @if (isEditingGoal) {
+<app-goal-form
+  [title]="'Edit goal'"
+  [description]="'Edit goal description:'"
+  [submitText]="'Edit goal'"
+  [cancelText]="'Cancel'"
+  [goalsSection]="goalsSection!"
+  [initialText]="goalText()"
+  (cancel)="onCancelEdit()"
+  (submitForm)="onEdit($event)"
+/>} @if(isConfirmDelete){
 <app-confirm-dialog
   [message]="'Are you sure you want to delete this goal?'"
   [confirmText]="'Yes, delete'"
@@ -21,6 +36,7 @@
     goalsSection="goalsThisYear"
     (onAdd)="handleAdd($event)"
     (requestDelete)="handleDeleteRequest($event, 'goalsThisYear')"
+    (requestEdit)="handleEditRequest($event, 'goalsThisYear')"
   />
   <app-goals-section
     title="Goals for next year"
@@ -28,5 +44,6 @@
     goalsSection="goalsNextYear"
     (onAdd)="handleAdd($event)"
     (requestDelete)="handleDeleteRequest($event, 'goalsNextYear')"
+    (requestEdit)="handleEditRequest($event, 'goalsNextYear')"
   />
 </section>

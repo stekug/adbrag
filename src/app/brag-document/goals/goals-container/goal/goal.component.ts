@@ -15,9 +15,7 @@ import { SmallBtnComponent } from '../../../../shared/small-btn/small-btn.compon
 export class GoalComponent {
   goal = input.required<Goal>();
   goalsSection = input.required<GoalsSection>();
-  requestDelete = output<string>();
 
-  onEdit() {
-    console.log('edit click');
-  }
+  requestDelete = output<string>();
+  requestEdit = output<string>();
 }

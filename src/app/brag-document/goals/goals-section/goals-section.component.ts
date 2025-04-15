@@ -18,4 +18,5 @@ export class GoalsSectionComponent {
   onAdd = output<GoalsSection>();
 
   requestDelete = output<string>();
+  requestEdit = output<string>();
 }
