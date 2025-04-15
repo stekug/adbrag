@@ -1,59 +1,105 @@
-# Adbrag
+# 📘 Adbrag
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
+In this project, I aim to build a **modern Angular application** using Signals, standalone components, and Tailwind CSS.  
+It serves as a personal brag document tracker for yearly goals and achievements.
 
-## Development server
+- **`Angular 19`**
+  - **`Signals`** (`signal()`, `computed()`, `effect()`)
+  - **`Standalone components`**
+  - **`inject()`**
+  - **`@input()`, `@output()`**
+  - **`Control flow syntax`** (`@if`, `@for`)
+  - **`Reactive Forms` / `ngModel`**
+- **`Component Architecture`**
+  - **`GoalsComponent`** (Sections, Header, Container, Item)
+  - **`GoalForm`** (Add/Edit Mode combined)
+  - **`SmallBtn`**, **`ConfirmDialog`**
+- **`Tailwind CSS`**
+  - **`Custom color palette`**
+  - **`Utility-first design`**
+  - **`Responsive layout`**
+- **`LocalStorage`**
+  - **`Data persistence layer`**
+  - **`Synced with Signals`**
+- **`TypeScript`**
+  - **`Strict typing`**
+  - **`Custom types & interfaces`**
+- **`Project Structure`**
+  - **`Modular, feature-based folders`**
+  - **`Model layer (Goal, BragDocument)`**
+  - **`Service logic separated from UI`**
+- **`Dynamic Form Logic`**
+  - **`Add & Edit with shared component`**
+  - **`Pre-fill via signal`**
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🚀 Getting Started
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+This project uses **Angular 19**. Below is a brief guide to run it locally.
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Node.js** (v18+ recommended)
+- **npm** (v9+)
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Installation
 
 ```bash
-ng e2e
+git clone https://github.com/stekug/adbrag.git
+cd adbrag
+npm install
+npm run start
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Then navigate to `http://localhost:4200/` in your browser.
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🧱 Folder Structure
+
+```bash
+src/
+├── app/
+│   ├── goals/                       # Feature: Goals
+│   ├── shared/                      # Reusable components (ConfirmDialog, SmallBtn)
+│   ├── data/                        # Dummy data for init
+│   └── brag-document.service.ts     # Core data logic
+├── models/                          # Interfaces & types
+├── styles/                          # Tailwind & base styles
+└── main.ts / app.config.ts          # Bootstrap
+```
+
+---
+
+## 🧪 Feature Status
+
+- ✅ Add goal
+- ✅ Edit goal
+- ✅ Delete goal
+- ✅ Confirm dialog on delete
+- ✅ Dynamic form (shared for Add/Edit)
+- ✅ Section layout: This Year vs Next Year
+- ✅ Tailwind UI
+- 🔜 Project section
+- 🔜 Export (PDF / Markdown)
+- 🔜 Year selection (2024 / 2025 / 2026)
+- 🔜 Supabase or Firebase backend (optional)
+
+---
+
+## 🧠 Learnings
+
+- How to use **Angular Signals** for reactive state
+- How to build **dynamic forms with shared components**
+- How to create **input()/output() signals** in Angular
+- Deep dive into **Tailwind theming** & component design
+- Managing app-wide state with **localStorage + Signal**
+
+---
+
+## 💬 Author
+
+Made with ❤️ by Stephan
+
+---
