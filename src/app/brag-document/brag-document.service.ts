@@ -56,6 +56,8 @@ export class BragDocumentService {
               ...brag,
               goalsNextYear: [...brag.goalsNextYear, newGoal],
             };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
         }
       })
     );
@@ -82,6 +84,8 @@ export class BragDocumentService {
                 (goal) => goal.id !== id
               ),
             };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
         }
       })
     );
@@ -127,6 +131,8 @@ export class BragDocumentService {
               ...brag,
               goalsNextYear: newGoalsNextYear,
             };
+          default:
+            throw new Error(`Unknown goalsSection: ${goalsSection}`);
         }
       })
     );
