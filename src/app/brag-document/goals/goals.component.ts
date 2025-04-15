@@ -20,9 +20,6 @@ export class GoalsComponent {
     this.bragDocumentService.getBragForYear(this.selectedYear())()
   );
 
-  // brag: Signal<BragDocument | null> =
-  //   this.bragDocumentService.getBragForYear('2025');
-
   isAddingGoal = false;
 
   isEditingGoal = false;
@@ -56,7 +53,11 @@ export class GoalsComponent {
     };
     const goalsSection = goalData.goalsSection;
     // Send newGoal to Service
-    this.bragDocumentService.saveNewGoal('2025', newGoal, goalsSection);
+    this.bragDocumentService.saveNewGoal(
+      this.selectedYear(),
+      newGoal,
+      goalsSection
+    );
 
     this.isAddingGoal = false;
   }
@@ -78,7 +79,7 @@ export class GoalsComponent {
     if (!this.pendingDeleteId) return;
 
     this.bragDocumentService.deleteGoal(
-      '2025',
+      this.selectedYear(),
       this.pendingDeleteId,
       this.goalsSection!
     );
@@ -105,7 +106,11 @@ export class GoalsComponent {
     this.pendingEditId = id;
     this.isEditingGoal = true;
 
-    const goal = this.bragDocumentService.getGoal('2025', id, goalsSection);
+    const goal = this.bragDocumentService.getGoal(
+      this.selectedYear(),
+      id,
+      goalsSection
+    );
     if (!goal) {
       console.error(`Goal with ID ${id} not found in the specified section.`);
       alert(
@@ -120,7 +125,7 @@ export class GoalsComponent {
   onEdit(goalData: { text: string; goalsSection: GoalsSection }) {
     const editedGoal = { text: goalData.text, id: this.pendingEditId };
     this.bragDocumentService.saveEditedGoal(
-      '2025',
+      this.selectedYear(),
       editedGoal,
       goalData.goalsSection
     );
