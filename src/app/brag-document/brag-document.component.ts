@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, Signal } from '@angular/core';
 import { GoalsComponent } from './goals/goals.component';
 
 @Component({
@@ -7,5 +7,5 @@ import { GoalsComponent } from './goals/goals.component';
   templateUrl: './brag-document.component.html',
 })
 export class BragDocumentComponent {
-  selectedYear = signal(new Date().getFullYear().toString());
+  selectedYear = input.required<string>();
 }

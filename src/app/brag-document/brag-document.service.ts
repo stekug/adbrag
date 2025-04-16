@@ -19,6 +19,8 @@ import {
 export class BragDocumentService {
   private brags = signal(DUMMY_BRAGS);
 
+  availableYears = computed(() => this.brags().map((brag) => brag.year));
+
   // --> Load data from local storage, when data exists <--
   constructor() {
     afterNextRender(() => {
