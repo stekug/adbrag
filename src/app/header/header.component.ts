@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, OnInit, output } from '@angular/core';
+import { BragDocumentService } from '../brag-document/brag-document.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  private bragDocumentService = inject(BragDocumentService);
 
+  availableYears = this.bragDocumentService.availableYears();
+  selectedYear = input.required<string>();
+  selectedYearValue!: string;
+  changeYear = output<string>();
+
+  ngOnInit(): void {
+    this.selectedYearValue = this.selectedYear();
+  }
+
+  onYearChange() {
+    this.changeYear.emit(this.selectedYearValue);
+  }
 }
