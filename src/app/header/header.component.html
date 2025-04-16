@@ -6,13 +6,27 @@
   <p class="text-primary-white font-light text-xl">
     Because your work deserves to be seen
   </p>
-  <select
-    class="bg-secondaryGreen text-lg font-bold py-1 w-22 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
-    [(ngModel)]="selectedYearValue"
-    (change)="onYearChange()"
-  >
-    @for (year of availableYears; track year) {
-    <option>{{ year }}</option>
-    }
-  </select>
+  <div class="flex gap-4">
+    <select
+      class="bg-secondaryGreen text-lg font-bold py-1 w-22 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
+      [(ngModel)]="selectedYearValue"
+      (change)="onYearChange()"
+    >
+      @for (year of availableYears; track year) {
+      <option>{{ year }}</option>
+      }
+      <option
+        [disabled]="availableYears.includes(currentYear)"
+        [value]="'create-new'"
+      >
+        Add brag document for this year ({{ currentYear }})
+      </option>
+    </select>
+
+    <button
+      class="bg-secondaryRed text-lg font-bold py-1 px-2 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
+    >
+      Reset this brag
+    </button>
+  </div>
 </header>

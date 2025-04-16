@@ -11,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 export class HeaderComponent implements OnInit {
   private bragDocumentService = inject(BragDocumentService);
 
+  // currentYear = new Date().getFullYear().toString();
+  currentYear = '2026';
   availableYears = this.bragDocumentService.availableYears();
   selectedYear = input.required<string>();
   selectedYearValue!: string;
