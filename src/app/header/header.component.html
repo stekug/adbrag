@@ -10,13 +10,13 @@
     <select
       class="bg-secondaryGreen text-lg font-bold py-1 w-22 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
       [(ngModel)]="selectedYearValue"
-      (change)="onYearChange()"
+      (change)="onChangeYear()"
     >
-      @for (year of availableYears; track year) {
+      @for (year of availableYears(); track year) {
       <option>{{ year }}</option>
       }
       <option
-        [disabled]="availableYears.includes(currentYear)"
+        [disabled]="availableYears().includes(currentYear)"
         [value]="'create-new'"
       >
         Add brag document for this year ({{ currentYear }})

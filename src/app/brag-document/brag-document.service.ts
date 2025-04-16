@@ -31,6 +31,10 @@ export class BragDocumentService {
     });
   }
 
+  // =======================================
+  // ========== Brag Document Logic ========
+  // =======================================
+
   // --> Helper function to save data / brags to localStoare <--
   private saveBrags() {
     localStorage.setItem('brags', JSON.stringify(this.brags()));
@@ -41,6 +45,23 @@ export class BragDocumentService {
       () => this.brags().find((brag) => brag.year === year) ?? null
     );
   }
+
+  createThisYearBrag() {
+    const thisYear = new Date().getFullYear().toString();
+    const newBrag = {
+      id: `brag-${thisYear}`,
+      year: thisYear,
+      goalsThisYear: [],
+      goalsNextYear: [],
+      projects: [],
+    };
+    this.brags.update((brags) => [...brags, newBrag]);
+    this.saveBrags();
+  }
+
+  // =======================================
+  // ============= Goal Logic ==============
+  // =======================================
 
   saveNewGoal(year: string, newGoal: Goal, goalsSection: GoalsSection) {
     this.brags.update((allBrags) =>
