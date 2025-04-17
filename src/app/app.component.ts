@@ -1,4 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { BragDocumentService } from './brag-document/brag-document.service';
+
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { BragDocumentComponent } from './brag-document/brag-document.component';
@@ -16,6 +18,7 @@ import { ResetDialogComponent } from './brag-document/reset-dialog/reset-dialog.
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  private bragDocumentService = inject(BragDocumentService);
   title = 'adbrag';
   selectedYear = signal(new Date().getFullYear().toString());
   isResetBrag = false;
@@ -29,7 +32,7 @@ export class AppComponent {
   }
 
   handleResetBragDocument() {
-    console.log('Call the RESET Service');
+    this.bragDocumentService.resetThisYearBrag(this.selectedYear());
     this.isResetBrag = false;
   }
 

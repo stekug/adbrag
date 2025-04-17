@@ -59,6 +59,23 @@ export class BragDocumentService {
     this.saveBrags();
   }
 
+  resetThisYearBrag(year: string) {
+    console.log('reset', year, 'brag');
+    const emptyBrag = {
+      id: `brag-${year}`,
+      year: year,
+      goalsThisYear: [],
+      goalsNextYear: [],
+      projects: [],
+    };
+    this.brags.update((allBrags) => [
+      ...allBrags.filter((brag) => brag.year !== year),
+      emptyBrag,
+    ]);
+
+    this.saveBrags();
+  }
+
   // =======================================
   // ============= Goal Logic ==============
   // =======================================
