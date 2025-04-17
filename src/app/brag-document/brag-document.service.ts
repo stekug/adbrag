@@ -18,11 +18,31 @@ import {
 })
 export class BragDocumentService {
   private brags = signal(DUMMY_BRAGS);
+  selectedYear = signal(new Date().getFullYear().toString());
 
-  availableYears = computed(() => this.brags().map((brag) => brag.year));
+  sortedBrags = computed(() =>
+    this.brags()
+      .slice()
+      .sort((a, b) => a.year.localeCompare(b.year))
+  );
+
+  availableYears = computed(() => this.sortedBrags().map((brag) => brag.year));
+
+  // =======================================
+  // ============= Local Storage ===========
+  // =======================================
+
+  saveSelectedYear(year: string) {
+    localStorage.setItem('selectedYear', JSON.stringify(year));
+  }
 
   // --> Load data from local storage, when data exists <--
   constructor() {
+    const savedYear = localStorage.getItem('selectedYear');
+    if (savedYear) {
+      this.selectedYear.set(JSON.parse(savedYear));
+    }
+
     afterNextRender(() => {
       const brags = localStorage.getItem('brags');
       if (brags) {
@@ -30,6 +50,14 @@ export class BragDocumentService {
       }
     });
   }
+
+  getSelectedYear() {
+    return this.selectedYear;
+  }
+
+  // =======================================
+  // ========== Brag Document Logic ========
+  // =======================================
 
   // --> Helper function to save data / brags to localStoare <--
   private saveBrags() {
@@ -41,6 +69,39 @@ export class BragDocumentService {
       () => this.brags().find((brag) => brag.year === year) ?? null
     );
   }
+
+  createThisYearBrag() {
+    const thisYear = new Date().getFullYear().toString();
+    const newBrag = {
+      id: `brag-${thisYear}`,
+      year: thisYear,
+      goalsThisYear: [],
+      goalsNextYear: [],
+      projects: [],
+    };
+    this.brags.update((brags) => [...brags, newBrag]);
+    this.saveBrags();
+  }
+
+  resetThisYearBrag(year: string) {
+    const emptyBrag = {
+      id: `brag-${year}`,
+      year: year,
+      goalsThisYear: [],
+      goalsNextYear: [],
+      projects: [],
+    };
+    this.brags.update((allBrags) => [
+      ...allBrags.filter((brag) => brag.year !== year),
+      emptyBrag,
+    ]);
+
+    this.saveBrags();
+  }
+
+  // =======================================
+  // ============= Goal Logic ==============
+  // =======================================
 
   saveNewGoal(year: string, newGoal: Goal, goalsSection: GoalsSection) {
     this.brags.update((allBrags) =>

@@ -1,0 +1,46 @@
+<div class="fixed inset-0 flex items-center justify-center z-10 pb-[30vh]">
+  <div
+    class="bg-primary-black-alpha5 backdrop-blur-sm fixed top-0 left-0 w-full h-screen"
+    (click)="onCancel()"
+  ></div>
+  <dialog
+    open
+    class="w-[66%] max-w-md p-8 rounded-md bg-secondaryRed overflow-hidden drop-shadow-md/30 mx-auto"
+  >
+    <div class="flex flex-col items-center gap-4">
+      <p class="text-primary-white text-lg font-bold text-center">
+        WARNING - You really want to reset the brag document for the year
+        {{ selectedYear() }}?
+      </p>
+      <form class="flex flex-col items-center gap-2" (ngSubmit)="onSubmit()">
+        <div class="flex items-center gap-4">
+          <label class="text-primary-white tracking-wider" for="reset"
+            >Type "<span class="font-bold">RESET</span>"</label
+          >
+          <input
+            class="bg-primary-white p-1 rounded-sm max-w-30"
+            name="reset"
+            id="reset"
+            [(ngModel)]="enteredText"
+          />
+        </div>
+        <div class="flex gap-4 justify-center mt-6">
+          <button
+            type="button"
+            (click)="onCancel()"
+            class="hover:cursor-pointer py-0.5 text-xl text-primary-black hover:text-primary-white"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="border hover:cursor-pointer disabled:cursor-default disabled:bg-red-300 disabled:text-red-400 text-xl py-0.5 px-2 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md"
+            [disabled]="enteredText !== 'RESET'"
+          >
+            Yes, Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</div>

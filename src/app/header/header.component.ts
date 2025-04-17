@@ -11,16 +11,29 @@ import { FormsModule } from '@angular/forms';
 export class HeaderComponent implements OnInit {
   private bragDocumentService = inject(BragDocumentService);
 
-  availableYears = this.bragDocumentService.availableYears();
+  currentYear = new Date().getFullYear().toString();
+  availableYears = this.bragDocumentService.availableYears;
   selectedYear = input.required<string>();
   selectedYearValue!: string;
   changeYear = output<string>();
+  resetBragRequest = output<void>();
 
   ngOnInit(): void {
     this.selectedYearValue = this.selectedYear();
   }
 
-  onYearChange() {
-    this.changeYear.emit(this.selectedYearValue);
+  onChangeYear() {
+    if (this.selectedYearValue === 'create-new') {
+      this.bragDocumentService.createThisYearBrag();
+      this.selectedYearValue = this.currentYear;
+      this.changeYear.emit(this.currentYear);
+    } else {
+      this.changeYear.emit(this.selectedYearValue);
+      this.bragDocumentService.saveSelectedYear(this.selectedYearValue);
+    }
+  }
+
+  onResetBragRequest() {
+    this.resetBragRequest.emit();
   }
 }
