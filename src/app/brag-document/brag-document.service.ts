@@ -84,7 +84,6 @@ export class BragDocumentService {
   }
 
   resetThisYearBrag(year: string) {
-    console.log('reset', year, 'brag');
     const emptyBrag = {
       id: `brag-${year}`,
       year: year,
