@@ -18,6 +18,7 @@ import {
 })
 export class BragDocumentService {
   private brags = signal(DUMMY_BRAGS);
+  selectedYear = signal(new Date().getFullYear().toString());
 
   sortedBrags = computed(() =>
     this.brags()
@@ -37,12 +38,21 @@ export class BragDocumentService {
 
   // --> Load data from local storage, when data exists <--
   constructor() {
+    const savedYear = localStorage.getItem('selectedYear');
+    if (savedYear) {
+      this.selectedYear.set(JSON.parse(savedYear));
+    }
+
     afterNextRender(() => {
       const brags = localStorage.getItem('brags');
       if (brags) {
         this.brags.set(JSON.parse(brags));
       }
     });
+  }
+
+  getSelectedYear() {
+    return this.selectedYear;
   }
 
   // =======================================
