@@ -1,7 +1,15 @@
 <main class="mx-auto w-full lg:max-w-screen-lg">
+  @if (isResetBrag) {
+  <app-reset-dialog
+    (cancelResetRequest)="handleCancelResetBragRequest()"
+    (resetBragDocument)="handleResetBragDocument()"
+    [selectedYear]="selectedYear()"
+  />
+  }
   <app-header
     [selectedYear]="selectedYear()"
     (changeYear)="handleYearChange($event)"
+    (resetBragRequest)="handleResetBragRequest()"
   />
   <app-brag-document [selectedYear]="selectedYear()" />
 </main>

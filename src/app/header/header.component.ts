@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   selectedYear = input.required<string>();
   selectedYearValue!: string;
   changeYear = output<string>();
+  resetBragRequest = output<void>();
 
   ngOnInit(): void {
     this.selectedYearValue = this.selectedYear();
@@ -29,5 +30,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.changeYear.emit(this.selectedYearValue);
     }
+  }
+
+  onResetBragRequest() {
+    this.resetBragRequest.emit();
   }
 }

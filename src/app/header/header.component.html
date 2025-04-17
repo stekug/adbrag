@@ -8,7 +8,7 @@
   </p>
   <div class="flex gap-4">
     <select
-      class="bg-secondaryGreen text-lg font-bold py-1 w-22 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
+      class="bg-secondaryGreen text-lg font-bold py-1 w-22 text-center border-primary-black border-1 rounded-sm hover:cursor-pointer mt-4"
       [(ngModel)]="selectedYearValue"
       (change)="onChangeYear()"
     >
@@ -24,7 +24,8 @@
     </select>
 
     <button
-      class="bg-secondaryRed text-lg font-bold py-1 px-2 text-center border-primary-black border-2 rounded-sm hover:cursor-pointer mt-4"
+      (click)="onResetBragRequest()"
+      class="bg-secondaryRed hover:bg-red-300 text-lg font-bold py-1 px-2 text-center border-primary-black border-1 rounded-sm hover:cursor-pointer mt-4"
     >
       Reset this brag
     </button>
