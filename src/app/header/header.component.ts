@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
       this.changeYear.emit(this.currentYear);
     } else {
       this.changeYear.emit(this.selectedYearValue);
+      this.bragDocumentService.saveSelectedYear(this.selectedYearValue);
     }
   }
 

@@ -27,6 +27,14 @@ export class BragDocumentService {
 
   availableYears = computed(() => this.sortedBrags().map((brag) => brag.year));
 
+  // =======================================
+  // ============= Local Storage ===========
+  // =======================================
+
+  saveSelectedYear(year: string) {
+    localStorage.setItem('selectedYear', JSON.stringify(year));
+  }
+
   // --> Load data from local storage, when data exists <--
   constructor() {
     afterNextRender(() => {
