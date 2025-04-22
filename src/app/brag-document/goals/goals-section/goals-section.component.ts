@@ -11,7 +11,7 @@ import { SectionHeaderComponent } from '../../../shared/section-header/section-h
   styleUrl: './goals-section.component.css',
 })
 export class GoalsSectionComponent {
-  title = input<string>();
+  title = input.required<string>();
   goals = input.required<Goal[]>();
   goalsSection = input.required<GoalsSection>();
 
