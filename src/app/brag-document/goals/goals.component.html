@@ -28,8 +28,7 @@
   (cancel)="onCancelDialog()"
 />
 }
-
-<section class="p-8">
+<app-brag-section>
   <app-goals-section
     title="Goals for this year"
     [goals]="goalsThisYear()"
@@ -46,4 +45,4 @@
     (requestDelete)="handleDeleteRequest($event, 'goalsNextYear')"
     (requestEdit)="handleEditRequest($event, 'goalsNextYear')"
   />
-</section>
+</app-brag-section>
