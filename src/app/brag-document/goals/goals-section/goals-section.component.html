@@ -1,8 +1,4 @@
-<app-section-header
-  [title]="title()"
-  [actionType]="goalsSection()"
-  (onAdd)="onAdd.emit($event)"
-/>
+<app-section-header [title]="title()" (onAdd)="onAdd.emit(goalsSection())" />
 <app-goals-container
   [goals]="goals()"
   [goalsSection]="goalsSection()"
