@@ -15,7 +15,7 @@ export class GoalsSectionComponent {
   goals = input.required<Goal[]>();
   goalsSection = input.required<GoalsSection>();
 
-  onAdd = output<GoalsSection>();
+  onAdd = output<string | void>();
 
   requestDelete = output<string>();
   requestEdit = output<string>();

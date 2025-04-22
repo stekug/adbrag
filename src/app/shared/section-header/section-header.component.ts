@@ -8,8 +8,15 @@ import { AddBtnComponent } from '../add-btn/add-btn.component';
   styleUrl: './section-header.component.css',
 })
 export class SectionHeaderComponent {
-  title = input<string>();
-  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
+  title = input.required<string>();
+  actionType = input<string>();
+  onAdd = output<string | void>();
 
-  onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
+  handleAddClick() {
+    if (this.actionType()) {
+      this.onAdd.emit(this.actionType());
+    } else {
+      this.onAdd.emit();
+    }
+  }
 }
