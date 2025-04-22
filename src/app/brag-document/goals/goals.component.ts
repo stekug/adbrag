@@ -4,10 +4,16 @@ import { BragDocumentService } from '../brag-document.service';
 import { Goal, GoalsSection } from '../../models/brag-document.model';
 import { GoalFormComponent } from './goal-form/goal-form.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
+import { BragSectionComponent } from '../../shared/brag-section/brag-section.component';
 
 @Component({
   selector: 'app-goals',
-  imports: [GoalsSectionComponent, GoalFormComponent, ConfirmDialogComponent],
+  imports: [
+    GoalsSectionComponent,
+    GoalFormComponent,
+    ConfirmDialogComponent,
+    BragSectionComponent,
+  ],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css',
 })
