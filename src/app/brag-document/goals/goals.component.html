@@ -28,21 +28,25 @@
   (cancel)="onCancelDialog()"
 />
 }
-<app-brag-section>
-  <app-goals-section
-    title="Goals for this year"
-    [goals]="goalsThisYear()"
-    goalsSection="goalsThisYear"
-    (onAdd)="handleAdd($event)"
-    (requestDelete)="handleDeleteRequest($event, 'goalsThisYear')"
-    (requestEdit)="handleEditRequest($event, 'goalsThisYear')"
-  />
-  <app-goals-section
-    title="Goals for next year"
-    [goals]="goalsNextYear()"
-    goalsSection="goalsNextYear"
-    (onAdd)="handleAdd($event)"
-    (requestDelete)="handleDeleteRequest($event, 'goalsNextYear')"
-    (requestEdit)="handleEditRequest($event, 'goalsNextYear')"
-  />
-</app-brag-section>
+<div class="flex flex-col gap-4">
+  <app-brag-item>
+    <app-goals-section
+      title="Goals for this year"
+      [goals]="goalsThisYear()"
+      goalsSection="goalsThisYear"
+      (onAdd)="handleAdd($event)"
+      (requestDelete)="handleDeleteRequest($event, 'goalsThisYear')"
+      (requestEdit)="handleEditRequest($event, 'goalsThisYear')"
+    />
+  </app-brag-item>
+  <app-brag-item>
+    <app-goals-section
+      title="Goals for next year"
+      [goals]="goalsNextYear()"
+      goalsSection="goalsNextYear"
+      (onAdd)="handleAdd($event)"
+      (requestDelete)="handleDeleteRequest($event, 'goalsNextYear')"
+      (requestEdit)="handleEditRequest($event, 'goalsNextYear')"
+    />
+  </app-brag-item>
+</div>

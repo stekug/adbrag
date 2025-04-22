@@ -4,7 +4,7 @@ import { BragDocumentService } from '../brag-document.service';
 import { Goal, GoalsSection } from '../../models/brag-document.model';
 import { GoalFormComponent } from './goal-form/goal-form.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { BragSectionComponent } from '../../shared/brag-section/brag-section.component';
+import { BragItemComponent } from '../../shared/brag-item/brag-item.component';
 
 @Component({
   selector: 'app-goals',
@@ -12,7 +12,7 @@ import { BragSectionComponent } from '../../shared/brag-section/brag-section.com
     GoalsSectionComponent,
     GoalFormComponent,
     ConfirmDialogComponent,
-    BragSectionComponent,
+    BragItemComponent,
   ],
   templateUrl: './goals.component.html',
   styleUrl: './goals.component.css',

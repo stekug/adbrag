@@ -1,13 +1,11 @@
-<app-brag-item>
-  <app-section-header
-    [title]="title()"
-    [actionType]="goalsSection()"
-    (onAdd)="onAdd.emit($event)"
-  />
-  <app-goals-container
-    [goals]="goals()"
-    [goalsSection]="goalsSection()"
-    (requestDelete)="requestDelete.emit($event)"
-    (requestEdit)="requestEdit.emit($event)"
-  />
-</app-brag-item>
+<app-section-header
+  [title]="title()"
+  [actionType]="goalsSection()"
+  (onAdd)="onAdd.emit($event)"
+/>
+<app-goals-container
+  [goals]="goals()"
+  [goalsSection]="goalsSection()"
+  (requestDelete)="requestDelete.emit($event)"
+  (requestEdit)="requestEdit.emit($event)"
+/>
