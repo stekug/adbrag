@@ -1,1 +1,28 @@
-<p>Ein project</p>
+<article
+  class="bg-primary-grey p-4 flex flex-col gap-4 rounded-sm drop-shadow-md/30"
+>
+  <header
+    class="bg-primary-adblue text-primary-white flex flex-col py-1 px-2 rounded-sm"
+  >
+    <h2 class="text-lg font-black">{{ project().title }}</h2>
+    <p class="text-sm font-medium">{{ project().subTitle }}</p>
+    <hr class="h-px my-1 bg-gray-600 border-0 dark:bg-primary-liteblue" />
+    <time class="text-sm">{{ project().date | date : 'longDate' }}</time>
+  </header>
+  <section>
+    <p>
+      {{ project().description }}
+    </p>
+  </section>
+  <section>
+    <h2 class="font-bold text-sm">Tech Stack:</h2>
+    <p class="flex gap-1">
+      @for (techItem of project().techStack; track $index) {
+      <span class="text-sm border rounded-sm px-1.5">{{ techItem }}</span> }
+    </p>
+  </section>
+  <div class="flex gap-2 self-end">
+    <app-small-btn variant="edit" />
+    <app-small-btn variant="delete" />
+  </div>
+</article>
