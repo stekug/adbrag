@@ -5,11 +5,8 @@ import { AddBtnComponent } from '../add-btn/add-btn.component';
   selector: 'app-section-header',
   imports: [AddBtnComponent],
   templateUrl: './section-header.component.html',
-  styleUrl: './section-header.component.css',
 })
 export class SectionHeaderComponent {
-  title = input<string>();
-  actionType = input.required<'goalsThisYear' | 'goalsNextYear'>();
-
-  onAdd = output<'goalsThisYear' | 'goalsNextYear'>();
+  title = input.required<string>();
+  onAdd = output<void>();
 }

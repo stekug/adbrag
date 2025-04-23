@@ -1,0 +1,8 @@
+<app-brag-item>
+  <app-section-header title="Projects" (onAdd)="openAddProjectForm()" />
+  <div class="flex flex-col gap-4 mt-4">
+    @for (project of projects(); track project.id) {
+    <app-project [project]="project" />
+    }
+  </div>
+</app-brag-item>

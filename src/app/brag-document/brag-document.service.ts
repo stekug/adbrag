@@ -201,4 +201,16 @@ export class BragDocumentService {
     );
     this.saveBrags();
   }
+
+  // =======================================
+  // =========== Projects Logic ============
+  // =======================================
+
+  getProjectsForThisYear(year: string) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return;
+
+    return brag.projects;
+  }
 }
