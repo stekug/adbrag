@@ -13,7 +13,8 @@ export interface Goal {
 
 export interface Project {
   id: string;
-  date: string;
+  startDate: string;
+  endDate: string;
   title: string;
   subTitle: string;
   description: string;

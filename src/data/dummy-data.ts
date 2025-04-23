@@ -21,7 +21,8 @@ export const DUMMY_BRAGS = [
     projects: [
       {
         id: 'proj-1',
-        date: '2024-04-12',
+        startDate: '2024-03-01',
+        endDate: '2024-04-12',
         title: 'Markdown Blog Generator',
         subTitle: 'CLI tool to create static markdown blogs',
         description:
@@ -30,7 +31,8 @@ export const DUMMY_BRAGS = [
       },
       {
         id: 'proj-2',
-        date: '2024-09-01',
+        startDate: '2024-08-10',
+        endDate: '2024-09-01',
         title: 'Angular Practice App',
         subTitle: 'Small task tracker to learn Angular fundamentals',
         description:
@@ -79,7 +81,8 @@ export const DUMMY_BRAGS = [
     projects: [
       {
         id: 'proj-1',
-        date: '2025-02-15',
+        startDate: '2025-01-10',
+        endDate: '2025-02-15',
         title: 'Initial Release of adbrag',
         subTitle: 'Personal Brag Document App',
         description:
@@ -88,7 +91,8 @@ export const DUMMY_BRAGS = [
       },
       {
         id: 'proj-2',
-        date: '2025-04-01',
+        startDate: '2025-03-01',
+        endDate: '2025-04-01',
         title: 'UI Overhaul',
         subTitle: 'New component structure and layout redesign',
         description:
@@ -97,7 +101,8 @@ export const DUMMY_BRAGS = [
       },
       {
         id: 'proj-3',
-        date: '2025-06-10',
+        startDate: '2025-05-01',
+        endDate: '2025-06-10',
         title: 'Export Feature',
         subTitle: 'PDF export for brag documents',
         description:
