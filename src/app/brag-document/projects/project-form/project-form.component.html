@@ -28,13 +28,23 @@
           placeholder="Project Subtitle"
         />
         <label for="date" class="block font-bold text-primary-white text-sm"
-          >Date</label
+          >Project start- and end-date</label
         >
-        <input
-          id="date"
-          name="date"
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
-        />
+        <mat-form-field>
+          <mat-label class="block font-bold text-primary-black text-sm"
+            >Enter a range</mat-label
+          >
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" />
+            <input matEndDate placeholder="End date" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
         <label
           for="description"
           class="block font-bold text-primary-white text-sm"
