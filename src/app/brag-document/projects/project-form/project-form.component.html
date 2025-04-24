@@ -6,7 +6,7 @@
     open
     class="w-[66%] max-w-md p-8 rounded-md bg-primary-adblue overflow-hidden drop-shadow-md/30 mx-auto"
   >
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <h2 class="text-3xl font-bold text-primary-white">New Project</h2>
       <div>
         <label for="title" class="block font-bold text-primary-white text-sm"
@@ -17,7 +17,10 @@
           name="title"
           class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
           placeholder="Project Title"
+          formControlName="title"
+          required
         />
+
         <label for="subTitle" class="block font-bold text-primary-white text-sm"
           >Subtitle</label
         >
@@ -26,7 +29,9 @@
           name="subTitle"
           class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
           placeholder="Project Subtitle"
+          formControlName="subTitle"
         />
+
         <label for="date" class="block font-bold text-primary-white text-sm"
           >Project start- and end-date</label
         >
@@ -35,8 +40,16 @@
             >Enter a range</mat-label
           >
           <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" />
-            <input matEndDate placeholder="End date" />
+            <input
+              matStartDate
+              placeholder="Start date"
+              formControlName="startDate"
+            />
+            <input
+              matEndDate
+              placeholder="End date"
+              formControlName="endDate"
+            />
           </mat-date-range-input>
           <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
@@ -57,7 +70,9 @@
           class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
           rows="5"
           placeholder="Project Description"
+          formControlName="description"
         ></textarea>
+
         <label
           for="techStack"
           class="block font-bold text-primary-white text-sm"
@@ -68,6 +83,7 @@
           name="techStack"
           class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
           placeholder="html, css, js"
+          formControlName="techStack"
         />
       </div>
       <div class="flex gap-4 justify-end mt-4">
@@ -85,6 +101,9 @@
           Add Project
         </button>
       </div>
+      @if (titleIsInvalid) {
+      <p>You have to enter a title!</p>
+      }
     </form>
   </dialog>
 </div>

@@ -21,7 +21,7 @@ export class ProjectsComponent {
 
   selectedYear = input.required<string>();
 
-  isAddingProject = false;
+  isAddingProject = true;
 
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
