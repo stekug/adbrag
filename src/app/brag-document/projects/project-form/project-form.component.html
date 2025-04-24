@@ -30,14 +30,15 @@
         <label for="date" class="block font-bold text-primary-white text-sm"
           >Project start- and end-date</label
         >
-        <mat-form-field>
-          <mat-label class="block font-bold text-primary-black text-sm"
+        <mat-form-field class="w-full text-primary-white">
+          <mat-label class="text-gray-400 italic font-light"
             >Enter a range</mat-label
           >
           <mat-date-range-input [rangePicker]="picker">
             <input matStartDate placeholder="Start date" />
             <input matEndDate placeholder="End date" />
           </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY</mat-hint>
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
