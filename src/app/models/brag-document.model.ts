@@ -21,4 +21,13 @@ export interface Project {
   techStack: string[];
 }
 
+export interface ProjectFormValue {
+  title: string;
+  subTitle: string;
+  description: string;
+  techStack: string;
+  startDate: Date;
+  endDate: Date;
+}
+
 export type GoalsSection = 'goalsThisYear' | 'goalsNextYear';

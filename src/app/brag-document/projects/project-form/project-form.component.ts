@@ -15,6 +15,7 @@ import {
 import { MatDateRangeInput } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormErrorComponent } from '../../../shared/form-error/form-error.component';
+import { Project, ProjectFormValue } from '../../../models/brag-document.model';
 
 @Component({
   selector: 'app-project-form',
@@ -33,21 +34,21 @@ import { FormErrorComponent } from '../../../shared/form-error/form-error.compon
 })
 export class ProjectFormComponent {
   cancel = output<void>();
-  submit = output<void>();
+  submitForm = output<Project>();
 
   form = new FormGroup({
     title: new FormControl('', {
       validators: [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(30),
+        Validators.maxLength(40),
       ],
     }),
     subTitle: new FormControl('', {
       validators: [
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(30),
+        Validators.maxLength(50),
       ],
     }),
     startDate: new FormControl(new Date(), {
@@ -116,8 +117,25 @@ export class ProjectFormComponent {
   }
 
   onSubmit() {
-    this.submit.emit();
-    console.log(this.form.value);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const { title, subTitle, description, techStack, startDate, endDate } = this
+      .form.value as ProjectFormValue;
+
+    const newProject = {
+      id: crypto.randomUUID(),
+      title,
+      subTitle,
+      description,
+      startDate: startDate.toISOString(),
+      endDate: endDate.toISOString(),
+      techStack: techStack.split(',').map((tech: string) => tech.trim()),
+    };
+
+    this.submitForm.emit(newProject);
   }
 
   onCancel() {

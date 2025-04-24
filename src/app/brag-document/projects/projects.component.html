@@ -1,7 +1,7 @@
 @if (isAddingProject) {
 <app-project-form
+  (submitForm)="onSubmitAddProject($event)"
   (cancel)="onCancelAddProject()"
-  (submit)="onSubmitAddProject()"
 />
 } @if(projects()!.length > 0) {
 <app-brag-item>

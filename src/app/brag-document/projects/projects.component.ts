@@ -5,6 +5,7 @@ import { ProjectComponent } from './project/project.component';
 import { BragItemComponent } from '../../shared/brag-item/brag-item.component';
 import { SectionHeaderComponent } from '../../shared/section-header/section-header.component';
 import { ProjectFormComponent } from './project-form/project-form.component';
+import { Project } from '../../models/brag-document.model';
 
 @Component({
   selector: 'app-projects',
@@ -21,7 +22,7 @@ export class ProjectsComponent {
 
   selectedYear = input.required<string>();
 
-  isAddingProject = true;
+  isAddingProject = false;
 
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
@@ -39,8 +40,8 @@ export class ProjectsComponent {
     this.isAddingProject = false;
   }
 
-  onSubmitAddProject() {
+  onSubmitAddProject(newProject: Project) {
     this.isAddingProject = false;
-    console.log('form submitted');
+    this.bragDocumentService.saveNewProject(this.selectedYear(), newProject);
   }
 }

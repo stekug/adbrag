@@ -20,6 +20,7 @@
             placeholder="Project Title"
             formControlName="title"
             required
+            maxlength="40"
           />
 
           <label
@@ -33,6 +34,7 @@
             class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
             placeholder="Project Subtitle"
             formControlName="subTitle"
+            maxlength="50"
           />
         </div>
         <!-- ####################### -->
@@ -118,20 +120,20 @@
       </div>
 
       @if (titleIsInvalid) {
-      <app-form-error errorMessage="Title must have at least 5 characters." />
+      <app-form-error errorMessage="Title must contain 5 to 40 characters." />
       } @if (subTitleIsInvalid) {
       <app-form-error
-        errorMessage="Subtitle must have at least 5 characters."
+        errorMessage="Subtitle must contain 5 to 50 characters."
       />
       } @if (startDateIsInvalid || endDateIsInvalid) {
       <app-form-error errorMessage="A valid date range is required." />
       } @if (descriptionIsInvalid) {
       <app-form-error
-        errorMessage="Description should contain 10 to 500 characters."
+        errorMessage="Description must contain 10 to 500 characters."
       />
       } @if (techStackIsInvalid) {
       <app-form-error
-        errorMessage="Tech Stack should contain at least 1 technology."
+        errorMessage="Tech Stack must contain at least 1 technology."
       />
       }
     </form>
