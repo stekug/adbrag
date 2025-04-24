@@ -44,4 +44,8 @@ export class ProjectsComponent {
     this.isAddingProject = false;
     this.bragDocumentService.saveNewProject(this.selectedYear(), newProject);
   }
+
+  handleDeleteProject(projectId: string) {
+    this.bragDocumentService.deleteProject(this.selectedYear(), projectId);
+  }
 }
