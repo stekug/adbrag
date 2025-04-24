@@ -27,6 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
   ],
   templateUrl: './project-form.component.html',
+  styleUrls: ['./project-form.component.css'],
 })
 export class ProjectFormComponent {
   cancel = output<void>();
@@ -47,18 +48,8 @@ export class ProjectFormComponent {
         Validators.maxLength(30),
       ],
     }),
-    startDate: new FormControl(
-      {},
-      {
-        validators: [Validators.required],
-      }
-    ),
-    endDate: new FormControl(
-      {},
-      {
-        validators: [Validators.required],
-      }
-    ),
+    startDate: new FormControl(new Date()),
+    endDate: new FormControl(new Date()),
     description: new FormControl('', {
       validators: [
         Validators.required,
@@ -86,20 +77,6 @@ export class ProjectFormComponent {
       this.form.controls.subTitle.touched &&
       this.form.controls.subTitle.dirty &&
       this.form.controls.subTitle.invalid
-    );
-  }
-  get startDateIsInvalid() {
-    return (
-      this.form.controls.startDate.touched &&
-      this.form.controls.startDate.dirty &&
-      this.form.controls.startDate.invalid
-    );
-  }
-  get endDateIsInvalid() {
-    return (
-      this.form.controls.endDate.touched &&
-      this.form.controls.endDate.dirty &&
-      this.form.controls.endDate.invalid
     );
   }
   get descriptionIsInvalid() {
