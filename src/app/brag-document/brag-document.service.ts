@@ -228,4 +228,18 @@ export class BragDocumentService {
     );
     this.saveBrags();
   }
+
+  deleteProject(year: string, projectId: string) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        return {
+          ...brag,
+          projects: brag.projects.filter((project) => project.id !== projectId),
+        };
+      })
+    );
+    this.saveBrags();
+  }
 }
