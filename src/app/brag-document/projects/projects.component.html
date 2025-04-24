@@ -1,4 +1,12 @@
-@if (isAddingProject) {
+@if(isDeletingProject){
+<app-confirm-dialog
+  message="Are you sure you want to delete this project?"
+  confirmText="Yes, delete"
+  cancelText="Cancel"
+  (cancel)="onCancelDeleteProject()"
+  (confirm)="handleDeleteProject()"
+/>
+} @if (isAddingProject) {
 <app-project-form
   (submitForm)="onSubmitAddProject($event)"
   (cancel)="onCancelAddProject()"
@@ -10,7 +18,7 @@
     @for (project of projects(); track project.id) {
     <app-project
       [project]="project"
-      (deleteRequest)="handleDeleteProject(project.id)"
+      (deleteRequest)="handleDeleteProjectRequest(project.id)"
     />
     }
   </ul>
