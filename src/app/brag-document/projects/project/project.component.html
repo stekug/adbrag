@@ -1,4 +1,4 @@
-<article
+<li
   class="bg-primary-grey p-4 flex flex-col gap-4 rounded-sm drop-shadow-md/30"
 >
   <header
@@ -7,7 +7,15 @@
     <h2 class="text-lg font-black">{{ project().title }}</h2>
     <p class="text-sm font-medium">{{ project().subTitle }}</p>
     <hr class="h-px my-1 bg-gray-600 border-0 dark:bg-primary-liteblue" />
-    <time class="text-sm">{{ project().date | date : 'longDate' }}</time>
+    <div class="text-sm">
+      <span class="text-secondaryGreen">(START) </span>
+      <time class="font-bold">{{
+        project().startDate | date : 'longDate'
+      }}</time>
+      <span> - </span>
+      <span class="text-red-400">(END) </span>
+      <time class="font-bold">{{ project().endDate | date : 'longDate' }}</time>
+    </div>
   </header>
   <section>
     <p>
@@ -25,4 +33,4 @@
     <app-small-btn variant="edit" />
     <app-small-btn variant="delete" />
   </div>
-</article>
+</li>

@@ -32,3 +32,30 @@ body {
   padding: 0;
   height: 100%;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto 'Helvetica Neue', sans-serif;
+}
+
+/* Angular Material */
+.mat-calendar,
+.mdc-text-field--filled,
+.mat-mdc-text-field-wrapper,
+.mat-mdc-form-field-flex,
+.mat-mdc-form-field-focus-overlay {
+  background-color: var(--color-primary-white);
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--color-primary-white) !important;
+}
+
+.mat-mdc-form-field-hint-wrapper,
+.mat-mdc-form-field-error-wrapper {
+  padding: 0 !important;
+}

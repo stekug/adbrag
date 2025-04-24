@@ -11,6 +11,7 @@ import {
   BragDocument,
   Goal,
   GoalsSection,
+  Project,
 } from '../models/brag-document.model';
 
 @Injectable({
@@ -212,5 +213,19 @@ export class BragDocumentService {
     if (!brag) return;
 
     return brag.projects;
+  }
+
+  saveNewProject(year: string, newProject: Project) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        return {
+          ...brag,
+          projects: [...brag.projects, newProject],
+        };
+      })
+    );
+    this.saveBrags();
   }
 }

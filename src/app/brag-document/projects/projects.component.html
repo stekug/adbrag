@@ -1,8 +1,24 @@
+@if (isAddingProject) {
+<app-project-form
+  (submitForm)="onSubmitAddProject($event)"
+  (cancel)="onCancelAddProject()"
+/>
+} @if(projects()!.length > 0) {
 <app-brag-item>
   <app-section-header title="Projects" (onAdd)="openAddProjectForm()" />
-  <div class="flex flex-col gap-4 mt-4">
+  <ul class="flex flex-col gap-4 mt-4">
     @for (project of projects(); track project.id) {
     <app-project [project]="project" />
     }
-  </div>
+  </ul>
 </app-brag-item>
+} @else {
+<app-brag-item>
+  <app-section-header title="Projects" (onAdd)="openAddProjectForm()" />
+  <p class="text-center mt-4 font-bold text-lg">
+    There are no projects for this year. You can add projects by pressing the
+    add button.
+  </p>
+</app-brag-item>
+
+}
