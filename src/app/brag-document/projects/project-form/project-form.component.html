@@ -9,30 +9,38 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <h2 class="text-3xl font-bold text-primary-white">New Project</h2>
       <div>
-        <label for="title" class="block font-bold text-primary-white text-sm"
-          >Title</label
-        >
-        <input
-          id="title"
-          name="title"
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
-          placeholder="Project Title"
-          formControlName="title"
-          required
-        />
+        <div class="custom-form-group">
+          <label for="title" class="block font-bold text-primary-white text-sm"
+            >Title</label
+          >
+          <input
+            id="title"
+            name="title"
+            class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
+            placeholder="Project Title"
+            formControlName="title"
+            required
+          />
 
-        <label for="subTitle" class="block font-bold text-primary-white text-sm"
-          >Subtitle</label
-        >
-        <input
-          id="subTitle"
-          name="subTitle"
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
-          placeholder="Project Subtitle"
-          formControlName="subTitle"
-        />
-
-        <label for="date" class="block font-bold text-primary-white text-sm"
+          <label
+            for="subTitle"
+            class="block font-bold text-primary-white text-sm"
+            >Subtitle</label
+          >
+          <input
+            id="subTitle"
+            name="subTitle"
+            class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
+            placeholder="Project Subtitle"
+            formControlName="subTitle"
+          />
+        </div>
+        <!-- ####################### -->
+        <!-- ###Start Date Picker### -->
+        <!-- ####################### -->
+        <label
+          for="startDateInput"
+          class="block font-bold text-primary-white text-sm"
           >Project start- and end-date</label
         >
         <mat-form-field class="w-full text-primary-white">
@@ -42,6 +50,7 @@
           <mat-date-range-input [rangePicker]="picker">
             <input
               matStartDate
+              id="startDateInput"
               placeholder="Start date"
               formControlName="startDate"
             />
@@ -58,33 +67,38 @@
           ></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
+        <!-- ####################### -->
+        <!-- ####End Date Picker#### -->
+        <!-- ####################### -->
+        <div class="custom-form-group">
+          <label
+            for="description"
+            class="block font-bold text-primary-white text-sm"
+            >Description</label
+          >
+          <textarea
+            id="description"
+            name="description"
+            class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
+            rows="5"
+            placeholder="Project Description"
+            formControlName="description"
+            maxlength="500"
+          ></textarea>
 
-        <label
-          for="description"
-          class="block font-bold text-primary-white text-sm"
-          >Description</label
-        >
-        <textarea
-          id="description"
-          name="description"
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
-          rows="5"
-          placeholder="Project Description"
-          formControlName="description"
-        ></textarea>
-
-        <label
-          for="techStack"
-          class="block font-bold text-primary-white text-sm"
-          >Tech Stack</label
-        >
-        <input
-          id="techStack"
-          name="techStack"
-          class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
-          placeholder="html, css, js"
-          formControlName="techStack"
-        />
+          <label
+            for="techStack"
+            class="block font-bold text-primary-white text-sm"
+            >Tech Stack</label
+          >
+          <input
+            id="techStack"
+            name="techStack"
+            class="w-full bg-primary-white p-2 rounded-sm border border-primary-liteblue placeholder:font-light placeholder:italic placeholder:text-gray-400"
+            placeholder="html, css, js"
+            formControlName="techStack"
+          />
+        </div>
       </div>
       <div class="flex gap-4 justify-end mt-4">
         <button
@@ -96,13 +110,29 @@
         </button>
         <button
           type="submit"
-          class="border hover:cursor-pointer text-xl py-0.5 px-4 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md"
+          [disabled]="form.invalid || form.pristine"
+          class="border hover:cursor-pointer text-xl py-0.5 px-4 bg-primary-white hover:bg-secondaryGreen text-primary-black rounded-md disabled:cursor-default disabled:bg-primary-liteblue disabled:text-blue-300"
         >
           Add Project
         </button>
       </div>
+
       @if (titleIsInvalid) {
-      <p>You have to enter a title!</p>
+      <app-form-error errorMessage="Title must have at least 5 characters." />
+      } @if (subTitleIsInvalid) {
+      <app-form-error
+        errorMessage="Subtitle must have at least 5 characters."
+      />
+      } @if (startDateIsInvalid || endDateIsInvalid) {
+      <app-form-error errorMessage="A valid date range is required." />
+      } @if (descriptionIsInvalid) {
+      <app-form-error
+        errorMessage="Description should contain 10 to 500 characters."
+      />
+      } @if (techStackIsInvalid) {
+      <app-form-error
+        errorMessage="Tech Stack should contain at least 1 technology."
+      />
       }
     </form>
   </dialog>

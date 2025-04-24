@@ -14,6 +14,7 @@ import {
 } from '@angular/material/datepicker';
 import { MatDateRangeInput } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FormErrorComponent } from '../../../shared/form-error/form-error.component';
 
 @Component({
   selector: 'app-project-form',
@@ -25,6 +26,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDateRangeInput,
     MatDatepickerModule,
     MatNativeDateModule,
+    FormErrorComponent,
   ],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
@@ -48,8 +50,12 @@ export class ProjectFormComponent {
         Validators.maxLength(30),
       ],
     }),
-    startDate: new FormControl(new Date()),
-    endDate: new FormControl(new Date()),
+    startDate: new FormControl(new Date(), {
+      validators: [Validators.required],
+    }),
+    endDate: new FormControl(new Date(), {
+      validators: [Validators.required],
+    }),
     description: new FormControl('', {
       validators: [
         Validators.required,
@@ -91,6 +97,21 @@ export class ProjectFormComponent {
       this.form.controls.techStack.touched &&
       this.form.controls.techStack.dirty &&
       this.form.controls.techStack.invalid
+    );
+  }
+
+  get startDateIsInvalid() {
+    return (
+      this.form.controls.startDate.touched &&
+      this.form.controls.startDate.dirty &&
+      this.form.controls.startDate.invalid
+    );
+  }
+  get endDateIsInvalid() {
+    return (
+      this.form.controls.endDate.touched &&
+      this.form.controls.endDate.dirty &&
+      this.form.controls.endDate.invalid
     );
   }
 

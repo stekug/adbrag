@@ -1,12 +1,15 @@
-input.ng-invalid.ng-touched {
+.custom-form-group input.ng-invalid.ng-touched {
   background-color: var(--color-red-300);
 }
-input.ng-invalid.ng-touched::placeholder {
+
+.custom-form-group input.ng-invalid.ng-touched::placeholder {
   color: var(--color-primary-white);
 }
-textarea.ng-invalid.ng-touched {
+
+.custom-form-group textarea.ng-invalid.ng-touched {
   background-color: var(--color-red-300);
 }
-textarea.ng-invalid.ng-touched::placeholder {
+
+.custom-form-group textarea.ng-invalid.ng-touched::placeholder {
   color: var(--color-primary-white);
 }
