@@ -156,19 +156,19 @@ export class ProjectFormComponent implements OnInit {
         techStack: techStack.split(',').map((tech: string) => tech.trim()),
       };
       this.submitForm.emit(editedProject);
+    } else {
+      const newProject = {
+        id: crypto.randomUUID(),
+        title,
+        subTitle,
+        description,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        techStack: techStack.split(',').map((tech: string) => tech.trim()),
+      };
+
+      this.submitForm.emit(newProject);
     }
-
-    const newProject = {
-      id: crypto.randomUUID(),
-      title,
-      subTitle,
-      description,
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-      techStack: techStack.split(',').map((tech: string) => tech.trim()),
-    };
-
-    this.submitForm.emit(newProject);
   }
 
   onCancel() {
