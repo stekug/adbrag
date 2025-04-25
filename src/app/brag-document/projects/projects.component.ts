@@ -75,6 +75,11 @@ export class ProjectsComponent {
     this.pendingEditProjectData = projectToEdit;
   }
 
+  onSubmitEditProject(editedProject: Project) {
+    this.isEditingProject = false;
+    this.bragDocumentService.editProject(this.selectedYear(), editedProject);
+  }
+
   // ### Delete Project ###
 
   onCancelDeleteProject() {

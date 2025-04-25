@@ -37,6 +37,8 @@ export class ProjectFormComponent implements OnInit {
   projectData = input<Project | null>();
   pendingEditProjectId = '';
 
+  isEditingProject = input<boolean>(false);
+
   cancel = output<void>();
   submitForm = output<Project>();
 
@@ -121,7 +123,6 @@ export class ProjectFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('onInit:', this.projectData());
     const projectData = this.projectData();
     if (!projectData) return;
 
@@ -143,6 +144,19 @@ export class ProjectFormComponent implements OnInit {
 
     const { title, subTitle, description, techStack, startDate, endDate } = this
       .form.value as ProjectFormValue;
+
+    if (this.isEditingProject()) {
+      const editedProject = {
+        id: this.pendingEditProjectId,
+        title,
+        subTitle,
+        description,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        techStack: techStack.split(',').map((tech: string) => tech.trim()),
+      };
+      this.submitForm.emit(editedProject);
+    }
 
     const newProject = {
       id: crypto.randomUUID(),

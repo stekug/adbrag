@@ -251,4 +251,23 @@ export class BragDocumentService {
     );
     this.saveBrags();
   }
+
+  editProject(year: string, editedProject: Project) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        const newProjects = brag.projects.map((project) => {
+          if (project.id !== editedProject.id) return project;
+          return editedProject;
+        });
+
+        return {
+          ...brag,
+          projects: newProjects,
+        };
+      })
+    );
+    this.saveBrags();
+  }
 }

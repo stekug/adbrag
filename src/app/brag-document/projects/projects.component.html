@@ -14,7 +14,9 @@
 } @if (isEditingProject) {
 <app-project-form
   (cancel)="onCancelEditProject()"
+  (submitForm)="onSubmitEditProject($event)"
   [projectData]="pendingEditProjectData"
+  [isEditingProject]="isEditingProject"
 />
 } @if(projects()!.length > 0) {
 <app-brag-item>
