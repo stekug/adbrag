@@ -31,6 +31,8 @@ export class ProjectsComponent {
   pendingDeleteProjectId = '';
   pendingEditProjectId = '';
 
+  pendingEditProjectData = {};
+
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
   );
@@ -63,6 +65,13 @@ export class ProjectsComponent {
   handleEditProjectRequest(projectId: string) {
     this.isEditingProject = true;
     this.pendingEditProjectId = projectId;
+    const projectToEdit = this.bragDocumentService.getProject(
+      this.selectedYear(),
+      projectId
+    );
+    if (!projectToEdit) return;
+    this.pendingEditProjectData = projectToEdit;
+    console.log(this.pendingEditProjectData);
   }
 
   // ### Delete Project ###

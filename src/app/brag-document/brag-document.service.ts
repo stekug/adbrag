@@ -215,6 +215,15 @@ export class BragDocumentService {
     return brag.projects;
   }
 
+  getProject(year: string, projectId: string) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return;
+
+    const project = brag.projects.find((project) => project.id === projectId);
+    return project;
+  }
+
   saveNewProject(year: string, newProject: Project) {
     this.brags.update((allBrags) =>
       allBrags.map((brag) => {
