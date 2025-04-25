@@ -60,6 +60,8 @@ export class ProjectsComponent {
 
   onCancelEditProject() {
     this.isEditingProject = false;
+    this.pendingEditProjectId = '';
+    this.pendingEditProjectData = null;
   }
 
   handleEditProjectRequest(projectId: string) {
