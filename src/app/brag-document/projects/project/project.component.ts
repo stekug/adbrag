@@ -13,8 +13,13 @@ import { SmallBtnComponent } from '../../../shared/small-btn/small-btn.component
 export class ProjectComponent {
   project = input.required<Project>();
   deleteRequest = output<void>();
+  editRequest = output<void>();
 
   onDeleteRequest() {
     this.deleteRequest.emit();
+  }
+
+  onEditRequest() {
+    this.editRequest.emit();
   }
 }

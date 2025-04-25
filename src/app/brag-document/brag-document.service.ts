@@ -215,6 +215,15 @@ export class BragDocumentService {
     return brag.projects;
   }
 
+  getProject(year: string, projectId: string) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return;
+
+    const project = brag.projects.find((project) => project.id === projectId);
+    return project;
+  }
+
   saveNewProject(year: string, newProject: Project) {
     this.brags.update((allBrags) =>
       allBrags.map((brag) => {
@@ -237,6 +246,25 @@ export class BragDocumentService {
         return {
           ...brag,
           projects: brag.projects.filter((project) => project.id !== projectId),
+        };
+      })
+    );
+    this.saveBrags();
+  }
+
+  editProject(year: string, editedProject: Project) {
+    this.brags.update((allBrags) =>
+      allBrags.map((brag) => {
+        if (brag.year !== year) return brag;
+
+        const newProjects = brag.projects.map((project) => {
+          if (project.id !== editedProject.id) return project;
+          return editedProject;
+        });
+
+        return {
+          ...brag,
+          projects: newProjects,
         };
       })
     );

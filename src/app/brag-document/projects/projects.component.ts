@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { BragDocumentService } from '../brag-document.service';
 
 import { ProjectComponent } from './project/project.component';
@@ -26,8 +26,12 @@ export class ProjectsComponent {
 
   isAddingProject = false;
   isDeletingProject = false;
+  isEditingProject = false;
 
   pendingDeleteProjectId = '';
+  pendingEditProjectId = '';
+
+  pendingEditProjectData: Project | null = null;
 
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
@@ -36,6 +40,8 @@ export class ProjectsComponent {
   projects = computed(() =>
     this.bragDocumentService.getProjectsForThisYear(this.selectedYear())
   );
+
+  // ### Add Project ###
 
   openAddProjectForm() {
     this.isAddingProject = true;
@@ -49,6 +55,34 @@ export class ProjectsComponent {
     this.isAddingProject = false;
     this.bragDocumentService.saveNewProject(this.selectedYear(), newProject);
   }
+
+  // ### Edit Project ###
+
+  onCancelEditProject() {
+    this.isEditingProject = false;
+    this.pendingEditProjectId = '';
+    this.pendingEditProjectData = null;
+  }
+
+  handleEditProjectRequest(projectId: string) {
+    this.isEditingProject = true;
+    this.pendingEditProjectId = projectId;
+
+    const projectToEdit = this.bragDocumentService.getProject(
+      this.selectedYear(),
+      projectId
+    );
+
+    if (!projectToEdit) return;
+    this.pendingEditProjectData = projectToEdit;
+  }
+
+  onSubmitEditProject(editedProject: Project) {
+    this.isEditingProject = false;
+    this.bragDocumentService.editProject(this.selectedYear(), editedProject);
+  }
+
+  // ### Delete Project ###
 
   onCancelDeleteProject() {
     this.isDeletingProject = false;

@@ -1,5 +1,6 @@
-import { Component, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -32,7 +33,12 @@ import { Project, ProjectFormValue } from '../../../models/brag-document.model';
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
 })
-export class ProjectFormComponent {
+export class ProjectFormComponent implements OnInit {
+  projectData = input<Project | null>();
+  pendingEditProjectId = '';
+
+  isEditingProject = input<boolean>(false);
+
   cancel = output<void>();
   submitForm = output<Project>();
 
@@ -116,6 +122,22 @@ export class ProjectFormComponent {
     );
   }
 
+  ngOnInit(): void {
+    const projectData = this.projectData();
+    if (!projectData) return;
+
+    this.pendingEditProjectId = projectData.id;
+
+    this.form.patchValue({
+      ...projectData,
+      startDate: new Date(projectData.startDate),
+      endDate: new Date(projectData.endDate),
+      techStack: Array.isArray(projectData.techStack)
+        ? projectData.techStack.join(', ')
+        : '',
+    });
+  }
+
   onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -125,17 +147,30 @@ export class ProjectFormComponent {
     const { title, subTitle, description, techStack, startDate, endDate } = this
       .form.value as ProjectFormValue;
 
-    const newProject = {
-      id: crypto.randomUUID(),
-      title,
-      subTitle,
-      description,
-      startDate: startDate.toISOString(),
-      endDate: endDate.toISOString(),
-      techStack: techStack.split(',').map((tech: string) => tech.trim()),
-    };
+    if (this.isEditingProject()) {
+      const editedProject = {
+        id: this.pendingEditProjectId,
+        title,
+        subTitle,
+        description,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        techStack: techStack.split(',').map((tech: string) => tech.trim()),
+      };
+      this.submitForm.emit(editedProject);
+    } else {
+      const newProject = {
+        id: crypto.randomUUID(),
+        title,
+        subTitle,
+        description,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        techStack: techStack.split(',').map((tech: string) => tech.trim()),
+      };
 
-    this.submitForm.emit(newProject);
+      this.submitForm.emit(newProject);
+    }
   }
 
   onCancel() {
