@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { BragDocumentService } from '../brag-document.service';
 
 import { ProjectComponent } from './project/project.component';
@@ -31,7 +31,7 @@ export class ProjectsComponent {
   pendingDeleteProjectId = '';
   pendingEditProjectId = '';
 
-  pendingEditProjectData = {};
+  pendingEditProjectData: Project | null = null;
 
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
@@ -65,13 +65,14 @@ export class ProjectsComponent {
   handleEditProjectRequest(projectId: string) {
     this.isEditingProject = true;
     this.pendingEditProjectId = projectId;
+
     const projectToEdit = this.bragDocumentService.getProject(
       this.selectedYear(),
       projectId
     );
+
     if (!projectToEdit) return;
     this.pendingEditProjectData = projectToEdit;
-    console.log(this.pendingEditProjectData);
   }
 
   // ### Delete Project ###

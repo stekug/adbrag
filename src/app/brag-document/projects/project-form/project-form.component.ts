@@ -1,5 +1,6 @@
-import { Component, output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
@@ -32,7 +33,10 @@ import { Project, ProjectFormValue } from '../../../models/brag-document.model';
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.css'],
 })
-export class ProjectFormComponent {
+export class ProjectFormComponent implements OnInit {
+  projectData = input<Project | null>();
+  pendingEditProjectId = '';
+
   cancel = output<void>();
   submitForm = output<Project>();
 
@@ -114,6 +118,21 @@ export class ProjectFormComponent {
       this.form.controls.endDate.dirty &&
       this.form.controls.endDate.invalid
     );
+  }
+
+  ngOnInit(): void {
+    console.log('onInit:', this.projectData());
+    const projectData = this.projectData();
+    if (!projectData) return;
+
+    this.pendingEditProjectId = projectData.id;
+
+    this.form.patchValue({
+      ...projectData,
+      startDate: new Date(projectData.startDate),
+      endDate: new Date(projectData.endDate),
+      techStack: projectData.techStack.join(', '),
+    });
   }
 
   onSubmit() {

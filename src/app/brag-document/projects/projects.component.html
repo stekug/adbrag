@@ -12,7 +12,10 @@
   (cancel)="onCancelAddProject()"
 />
 } @if (isEditingProject) {
-<app-project-form (cancel)="onCancelEditProject()" />
+<app-project-form
+  (cancel)="onCancelEditProject()"
+  [projectData]="pendingEditProjectData"
+/>
 } @if(projects()!.length > 0) {
 <app-brag-item>
   <app-section-header title="Projects" (onAdd)="openAddProjectForm()" />
