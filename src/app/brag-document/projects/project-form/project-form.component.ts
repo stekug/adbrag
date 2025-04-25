@@ -132,7 +132,9 @@ export class ProjectFormComponent implements OnInit {
       ...projectData,
       startDate: new Date(projectData.startDate),
       endDate: new Date(projectData.endDate),
-      techStack: projectData.techStack.join(', '),
+      techStack: Array.isArray(projectData.techStack)
+        ? projectData.techStack.join(', ')
+        : '',
     });
   }
 
