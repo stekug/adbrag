@@ -26,8 +26,10 @@ export class ProjectsComponent {
 
   isAddingProject = false;
   isDeletingProject = false;
+  isEditingProject = false;
 
   pendingDeleteProjectId = '';
+  pendingEditProjectId = '';
 
   brag = computed(() =>
     this.bragDocumentService.getBragForYear(this.selectedYear())()
@@ -36,6 +38,8 @@ export class ProjectsComponent {
   projects = computed(() =>
     this.bragDocumentService.getProjectsForThisYear(this.selectedYear())
   );
+
+  // ### Add Project ###
 
   openAddProjectForm() {
     this.isAddingProject = true;
@@ -49,6 +53,19 @@ export class ProjectsComponent {
     this.isAddingProject = false;
     this.bragDocumentService.saveNewProject(this.selectedYear(), newProject);
   }
+
+  // ### Edit Project ###
+
+  onCancelEditProject() {
+    this.isEditingProject = false;
+  }
+
+  handleEditProjectRequest(projectId: string) {
+    this.isEditingProject = true;
+    this.pendingEditProjectId = projectId;
+  }
+
+  // ### Delete Project ###
 
   onCancelDeleteProject() {
     this.isDeletingProject = false;

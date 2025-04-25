@@ -11,6 +11,8 @@
   (submitForm)="onSubmitAddProject($event)"
   (cancel)="onCancelAddProject()"
 />
+} @if (isEditingProject) {
+<app-project-form (cancel)="onCancelEditProject()" />
 } @if(projects()!.length > 0) {
 <app-brag-item>
   <app-section-header title="Projects" (onAdd)="openAddProjectForm()" />
@@ -19,6 +21,7 @@
     <app-project
       [project]="project"
       (deleteRequest)="handleDeleteProjectRequest(project.id)"
+      (editRequest)="handleEditProjectRequest(project.id)"
     />
     }
   </ul>
