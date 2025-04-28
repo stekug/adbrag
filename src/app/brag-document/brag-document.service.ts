@@ -79,6 +79,7 @@ export class BragDocumentService {
       goalsThisYear: [],
       goalsNextYear: [],
       projects: [],
+      collaborations: [],
     };
     this.brags.update((brags) => [...brags, newBrag]);
     this.saveBrags();
@@ -91,6 +92,7 @@ export class BragDocumentService {
       goalsThisYear: [],
       goalsNextYear: [],
       projects: [],
+      collaborations: [],
     };
     this.brags.update((allBrags) => [
       ...allBrags.filter((brag) => brag.year !== year),

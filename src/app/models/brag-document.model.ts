@@ -4,6 +4,7 @@ export interface BragDocument {
   goalsThisYear: Goal[];
   goalsNextYear: Goal[];
   projects: Project[];
+  collaborations: Collaboration[];
 }
 
 export interface Goal {
@@ -19,6 +20,14 @@ export interface Project {
   subTitle: string;
   description: string;
   techStack: string[];
+}
+
+export interface Collaboration {
+  id: string;
+  type: string;
+  description: string;
+  date: string;
+  relatedTo: string;
 }
 
 export interface ProjectFormValue {
