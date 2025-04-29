@@ -272,4 +272,16 @@ export class BragDocumentService {
     );
     this.saveBrags();
   }
+
+  // =======================================
+  // ======== Collaborations Logic =========
+  // =======================================
+
+  getCollaborationsForThisYear(year: string) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return;
+
+    return brag.collaborations;
+  }
 }
