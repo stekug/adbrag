@@ -24,7 +24,13 @@ export interface Project {
 
 export interface Collaboration {
   id: string;
-  type: string;
+  type:
+    | 'Code Review'
+    | 'Internal Talk'
+    | 'Mentoring'
+    | 'Monitoring Improvement'
+    | 'Meeting Notes'
+    | 'Answered Questions';
   description: string;
   date: string;
   relatedTo: string;

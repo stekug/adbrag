@@ -1,4 +1,6 @@
-export const DUMMY_BRAGS = [
+import { BragDocument } from '../app/models/brag-document.model';
+
+export const DUMMY_BRAGS: BragDocument[] = [
   {
     id: 'brag-2024',
     year: '2024',
@@ -64,6 +66,22 @@ export const DUMMY_BRAGS = [
           'Gave an internal workshop about best practices in writing clean JavaScript code.',
         date: '2024-07-05',
         relatedTo: 'Frontend Chapter',
+      },
+      {
+        id: 'collab-7',
+        type: 'Meeting Notes',
+        description:
+          'Created clear and actionable meeting notes for the Q2 strategy workshop.',
+        date: '2024-07-15',
+        relatedTo: 'Q2 Strategy Meeting',
+      },
+      {
+        id: 'collab-8',
+        type: 'Answered Questions',
+        description:
+          'Helped Sarah from Team Beta solve critical deployment pipeline issues.',
+        date: '2024-08-01',
+        relatedTo: 'Deployment Pipelines',
       },
     ],
   },
@@ -159,6 +177,22 @@ export const DUMMY_BRAGS = [
           'Presented a session about scaling Angular applications in a team.',
         date: '2025-04-10',
         relatedTo: 'Dev Conference 2025',
+      },
+      {
+        id: 'collab-9',
+        type: 'Meeting Notes',
+        description:
+          'Compiled and shared detailed notes for the Angular Refactoring Plan Meeting.',
+        date: '2025-05-05',
+        relatedTo: 'Angular Refactoring Plan',
+      },
+      {
+        id: 'collab-10',
+        type: 'Answered Questions',
+        description:
+          'Assisted the DevOps team with implementing secure secrets management.',
+        date: '2025-06-20',
+        relatedTo: 'Secrets Management',
       },
     ],
   },
