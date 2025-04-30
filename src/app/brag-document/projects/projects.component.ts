@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { BragDocumentService } from '../brag-document.service';
 
 import { ProjectComponent } from './project/project.component';
