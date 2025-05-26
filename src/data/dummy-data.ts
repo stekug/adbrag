@@ -46,8 +46,7 @@ export const DUMMY_BRAGS: BragDocument[] = [
       {
         id: 'collab-1',
         type: 'Mentoring',
-        description:
-          'Supported two junior developers during their onboarding process.',
+        description: 'Supported two junior developers during their onboarding process.',
         date: '2024-05-20',
         relatedTo: 'Team Alpha',
       },
@@ -70,16 +69,14 @@ export const DUMMY_BRAGS: BragDocument[] = [
       {
         id: 'collab-7',
         type: 'Meeting Notes',
-        description:
-          'Created clear and actionable meeting notes for the Q2 strategy workshop.',
+        description: 'Created clear and actionable meeting notes for the Q2 strategy workshop.',
         date: '2024-07-15',
         relatedTo: 'Q2 Strategy Meeting',
       },
       {
         id: 'collab-8',
         type: 'Answered Questions',
-        description:
-          'Helped Sarah from Team Beta solve critical deployment pipeline issues.',
+        description: 'Helped Sarah from Team Beta solve critical deployment pipeline issues.',
         date: '2024-08-01',
         relatedTo: 'Deployment Pipelines',
       },
@@ -158,8 +155,7 @@ export const DUMMY_BRAGS: BragDocument[] = [
       {
         id: 'collab-4',
         type: 'Monitoring Improvement',
-        description:
-          'Set up a new Grafana dashboard to monitor frontend API calls.',
+        description: 'Set up a new Grafana dashboard to monitor frontend API calls.',
         date: '2025-02-25',
         relatedTo: 'Frontend Monitoring',
       },
@@ -173,24 +169,21 @@ export const DUMMY_BRAGS: BragDocument[] = [
       {
         id: 'collab-6',
         type: 'Internal Talk',
-        description:
-          'Presented a session about scaling Angular applications in a team.',
+        description: 'Presented a session about scaling Angular applications in a team.',
         date: '2025-04-10',
         relatedTo: 'Dev Conference 2025',
       },
       {
         id: 'collab-9',
         type: 'Meeting Notes',
-        description:
-          'Compiled and shared detailed notes for the Angular Refactoring Plan Meeting.',
+        description: 'Compiled and shared detailed notes for the Angular Refactoring Plan Meeting.',
         date: '2025-05-05',
         relatedTo: 'Angular Refactoring Plan',
       },
       {
         id: 'collab-10',
         type: 'Answered Questions',
-        description:
-          'Assisted the DevOps team with implementing secure secrets management.',
+        description: 'Assisted the DevOps team with implementing secure secrets management.',
         date: '2025-06-20',
         relatedTo: 'Secrets Management',
       },
