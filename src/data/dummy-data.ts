@@ -1,4 +1,6 @@
-export const DUMMY_BRAGS = [
+import { BragDocument } from '../app/models/brag-document.model';
+
+export const DUMMY_BRAGS: BragDocument[] = [
   {
     id: 'brag-2024',
     year: '2024',
@@ -38,6 +40,45 @@ export const DUMMY_BRAGS = [
         description:
           'Created a small productivity app using Angular with routing, services, and basic component composition. Focused on learning the Angular CLI and modular structure.',
         techStack: ['Angular', 'TypeScript', 'SCSS'],
+      },
+    ],
+    collaborations: [
+      {
+        id: 'collab-1',
+        type: 'Mentoring',
+        description: 'Supported two junior developers during their onboarding process.',
+        date: '2024-05-20',
+        relatedTo: 'Team Alpha',
+      },
+      {
+        id: 'collab-2',
+        type: 'Code Review',
+        description:
+          'Reviewed and improved a complex feature PR related to authentication service.',
+        date: '2024-06-10',
+        relatedTo: 'Authentication Module',
+      },
+      {
+        id: 'collab-3',
+        type: 'Internal Talk',
+        description:
+          'Gave an internal workshop about best practices in writing clean JavaScript code.',
+        date: '2024-07-05',
+        relatedTo: 'Frontend Chapter',
+      },
+      {
+        id: 'collab-7',
+        type: 'Meeting Notes',
+        description: 'Created clear and actionable meeting notes for the Q2 strategy workshop.',
+        date: '2024-07-15',
+        relatedTo: 'Q2 Strategy Meeting',
+      },
+      {
+        id: 'collab-8',
+        type: 'Answered Questions',
+        description: 'Helped Sarah from Team Beta solve critical deployment pipeline issues.',
+        date: '2024-08-01',
+        relatedTo: 'Deployment Pipelines',
       },
     ],
   },
@@ -108,6 +149,43 @@ export const DUMMY_BRAGS = [
         description:
           'Added the ability to export completed brag documents as styled PDFs, ready for reviews or retros. Integrated third-party PDF export library.',
         techStack: ['Angular', 'jspdf', 'html2canvas'],
+      },
+    ],
+    collaborations: [
+      {
+        id: 'collab-4',
+        type: 'Monitoring Improvement',
+        description: 'Set up a new Grafana dashboard to monitor frontend API calls.',
+        date: '2025-02-25',
+        relatedTo: 'Frontend Monitoring',
+      },
+      {
+        id: 'collab-5',
+        type: 'Mentoring',
+        description: 'Mentored Ben during his first Angular feature delivery.',
+        date: '2025-03-15',
+        relatedTo: 'Project Lighthouse',
+      },
+      {
+        id: 'collab-6',
+        type: 'Internal Talk',
+        description: 'Presented a session about scaling Angular applications in a team.',
+        date: '2025-04-10',
+        relatedTo: 'Dev Conference 2025',
+      },
+      {
+        id: 'collab-9',
+        type: 'Meeting Notes',
+        description: 'Compiled and shared detailed notes for the Angular Refactoring Plan Meeting.',
+        date: '2025-05-05',
+        relatedTo: 'Angular Refactoring Plan',
+      },
+      {
+        id: 'collab-10',
+        type: 'Answered Questions',
+        description: 'Assisted the DevOps team with implementing secure secrets management.',
+        date: '2025-06-20',
+        relatedTo: 'Secrets Management',
       },
     ],
   },

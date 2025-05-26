@@ -1,18 +1,7 @@
-import {
-  afterNextRender,
-  computed,
-  Injectable,
-  Signal,
-  signal,
-} from '@angular/core';
+import { afterNextRender, computed, Injectable, Signal, signal } from '@angular/core';
 
 import { DUMMY_BRAGS } from '../../data/dummy-data';
-import {
-  BragDocument,
-  Goal,
-  GoalsSection,
-  Project,
-} from '../models/brag-document.model';
+import { BragDocument, Goal, GoalsSection, Project } from '../models/brag-document.model';
 
 @Injectable({
   providedIn: 'root',
@@ -66,9 +55,7 @@ export class BragDocumentService {
   }
 
   getBragForYear(year: string): Signal<BragDocument | null> {
-    return computed(
-      () => this.brags().find((brag) => brag.year === year) ?? null
-    );
+    return computed(() => this.brags().find((brag) => brag.year === year) ?? null);
   }
 
   createThisYearBrag() {
@@ -79,6 +66,7 @@ export class BragDocumentService {
       goalsThisYear: [],
       goalsNextYear: [],
       projects: [],
+      collaborations: [],
     };
     this.brags.update((brags) => [...brags, newBrag]);
     this.saveBrags();
@@ -91,11 +79,9 @@ export class BragDocumentService {
       goalsThisYear: [],
       goalsNextYear: [],
       projects: [],
+      collaborations: [],
     };
-    this.brags.update((allBrags) => [
-      ...allBrags.filter((brag) => brag.year !== year),
-      emptyBrag,
-    ]);
+    this.brags.update((allBrags) => [...allBrags.filter((brag) => brag.year !== year), emptyBrag]);
 
     this.saveBrags();
   }
@@ -137,16 +123,12 @@ export class BragDocumentService {
           case 'goalsThisYear':
             return {
               ...brag,
-              goalsThisYear: brag.goalsThisYear.filter(
-                (goal) => goal.id !== id
-              ),
+              goalsThisYear: brag.goalsThisYear.filter((goal) => goal.id !== id),
             };
           case 'goalsNextYear':
             return {
               ...brag,
-              goalsNextYear: brag.goalsNextYear.filter(
-                (goal) => goal.id !== id
-              ),
+              goalsNextYear: brag.goalsNextYear.filter((goal) => goal.id !== id),
             };
           default:
             throw new Error(`Unknown goalsSection: ${goalsSection}`);
@@ -269,5 +251,17 @@ export class BragDocumentService {
       })
     );
     this.saveBrags();
+  }
+
+  // =======================================
+  // ======== Collaborations Logic =========
+  // =======================================
+
+  getCollaborationsForThisYear(year: string) {
+    const brag = this.getBragForYear(year)();
+
+    if (!brag) return [];
+
+    return brag.collaborations;
   }
 }
